@@ -1,0 +1,95 @@
+url:
+baseurl: https://www.fakenewsbears.org
+
+# Site settings
+title: Fake News Bears
+email: aiwamizu@berkeley.edu
+description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
+
+
+# Team names, titles and social links
+people:
+- name: Akiko Iwamizu
+  pic: 1
+  position: Subject Matter Expert, App Developer
+  social:
+    - title: twitter
+      url: #
+    - title: github
+      url: #
+    - title: linkedin
+      url: #
+
+- name: Brook Bi
+  pic: 2
+  position: Project Manager
+  social:
+    - title: twitter
+      url: #
+    - title: github
+      url: #
+    - title: linkedin
+      url: #
+
+- name: Giorgio Soggiu
+  pic: 3
+  position: EDA Lead
+  social:
+    - title: twitter
+      url: #
+    - title: github
+      url: #
+    - title: linkedin
+      url: #
+
+  - name: Jason Yang
+    pic: 3
+    position: Product Manager
+    social:
+      - title: twitter
+        url: #
+      - title: github
+        url: #
+      - title: linkedin
+        url: #
+
+  - name: Razal Minhas
+    pic: 3
+    position: MLE Lead
+    social:
+      - title: twitter
+        url: #
+      - title: github
+        url: #
+      - title: linkedin
+        url: #
+
+  - name: Rohin Chabra
+    pic: 3
+    position: Backend Lead
+    social:
+      - title: twitter
+        url: #
+      - title: github
+        url: #
+      - title: linkedin
+        url: #
+
+# Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
+social:
+  - title: twitter
+    url:
+  - title: facebook
+    url:
+  - title: github
+    url: https://github.com/akikoiwamizu/fake-news-bears
+
+# Postal address (add as many lines as necessary)
+address:
+  - line: 3481 Melrose Place
+  - line: Beverly Hills, CA 90210
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+theme: agency-jekyll-theme
