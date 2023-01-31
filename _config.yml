@@ -1,5 +1,5 @@
 url:
-baseurl: https://www.fakenewsbears.org
+baseurl: www.fakenewsbears.org
 
 # Site settings
 title: Fake News Bears
@@ -9,71 +9,38 @@ description: "Write an awesome description for your new site here. You can edit 
 
 # Team names, titles and social links
 people:
-- name: Akiko Iwamizu
+- name: Kay Garland
   pic: 1
-  position: Subject Matter Expert, App Developer
+  position: Lead Designer
   social:
     - title: twitter
       url: #
-    - title: github
+    - title: facebook
       url: #
-    - title: linkedin
+    - title: stack-overflow
       url: #
 
-- name: Brook Bi
+- name: Larry Parker
   pic: 2
-  position: Project Manager
+  position: Lead Marketer
   social:
     - title: twitter
       url: #
-    - title: github
+    - title: facebook
       url: #
     - title: linkedin
       url: #
 
-- name: Giorgio Soggiu
+- name: Diana Petersen
   pic: 3
-  position: EDA Lead
+  position: Lead Developer
   social:
     - title: twitter
       url: #
-    - title: github
+    - title: facebook
       url: #
-    - title: linkedin
+    - title: google-plus
       url: #
-
-  - name: Jason Yang
-    pic: 3
-    position: Product Manager
-    social:
-      - title: twitter
-        url: #
-      - title: github
-        url: #
-      - title: linkedin
-        url: #
-
-  - name: Razal Minhas
-    pic: 3
-    position: MLE Lead
-    social:
-      - title: twitter
-        url: #
-      - title: github
-        url: #
-      - title: linkedin
-        url: #
-
-  - name: Rohin Chabra
-    pic: 3
-    position: Backend Lead
-    social:
-      - title: twitter
-        url: #
-      - title: github
-        url: #
-      - title: linkedin
-        url: #
 
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 social:
