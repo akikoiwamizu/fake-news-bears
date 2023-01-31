@@ -92,4 +92,4 @@ address:
 # Build settings
 markdown: kramdown
 permalink: pretty
-theme: agency-jekyll-theme
+remote-theme: y7kim/agency-jekyll-theme
