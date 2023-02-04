@@ -33,7 +33,7 @@ except ValueError:
 # To set your enviornment variables in your terminal run the following line:
 # export 'BEARER_TOKEN'='<your_bearer_token>'
 #Hardcoded for now, working on google cloud function to replace this
-bearer_token = "AAAAAAAAAAAAAAAAAAAAAEEklgEAAAAAQEokOWuzEpK9UbJdu6XGAK%2B7Kfg%3DAysmYKdJdrEmineKqMl6fo5TnYUO6SIbO1ezwXzNeOoldwD3dr"
+bearer_token = "ENTER IN BEARER AUTH TOKEN"
 
 def create_url(ids):
     tweet_fields = "tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,source,text,withheld"
