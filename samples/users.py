@@ -20,7 +20,9 @@ oauth = OAuth1Session(consumer_key, client_secret=consumer_secret)
 try:
     fetch_response = oauth.fetch_request_token(request_token_url)
 except ValueError:
-    print("There may have been an issue with the consumer_key or consumer_secret you entered.")
+    print(
+        "There may have been an issue with the consumer_key or consumer_secret you entered."
+    )
 
 resource_owner_key = fetch_response.get("oauth_token")
 resource_owner_secret = fetch_response.get("oauth_token_secret")
@@ -57,7 +59,9 @@ oauth = OAuth1Session(
 response = oauth.get("https://api.twitter.com/2/users/by", params=params)
 
 if response.status_code != 200:
-    raise Exception("Request returned an error: {} {}".format(response.status_code, response.text))
+    raise Exception(
+        "Request returned an error: {} {}".format(response.status_code, response.text)
+    )
 
 print("Response code: {}".format(response.status_code))
 
