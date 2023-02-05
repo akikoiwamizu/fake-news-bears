@@ -1,7 +1,7 @@
 import requests
 import os
 import json
-from tweet_stripper import tweet_id_stripper,username_handler
+from tweet_funcs import tweet_id_stripper,username_handler
 import time
 
 #Making Directories
@@ -30,7 +30,7 @@ print("2. Finished Gathering usernames. Ready for requests")
 # To set your enviornment variables in your terminal run the following line:
 # export 'BEARER_TOKEN'='<your_bearer_token>'
 #Hardcoded for now, working on google cloud function to replace this
-bearer_token = "ENTER BEARER TOKEN"
+bearer_token = "AAAAAAAAAAAAAAAAAAAAAEEklgEAAAAAQEokOWuzEpK9UbJdu6XGAK%2B7Kfg%3DAysmYKdJdrEmineKqMl6fo5TnYUO6SIbO1ezwXzNeOoldwD3dr"
 
 def create_url(usernames):
     user_fields = "created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,verified_type,withheld"

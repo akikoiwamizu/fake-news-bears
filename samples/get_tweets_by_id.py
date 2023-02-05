@@ -1,7 +1,7 @@
 import requests
 import os
 import json
-from tweet_stripper import tweet_id_stripper
+from tweet_funcs import tweet_id_stripper
 import time
 
 #Making Directories
@@ -48,6 +48,8 @@ def create_url(ids):
     url = "https://api.twitter.com/2/tweets?ids={}&{}".format(
         ids, tweet_fields)
     return url
+
+
 
 
 def bearer_oauth(r):
