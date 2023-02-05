@@ -1,7 +1,7 @@
 import requests
 import os
 import json
-from tweet_stripper import tweet_id_stripper,username_handler
+from tweet_funcs import tweet_id_stripper,username_handler
 import time
 
 #Making Directories
