@@ -32,7 +32,7 @@ print("2. Finished Gathering usernames. Preparing user_ids from usernames")
 # To set your enviornment variables in your terminal run the following line:
 # export 'BEARER_TOKEN'='<your_bearer_token>'
 #Hardcoded for now, working on google cloud function to replace this
-bearer_token = "AAAAAAAAAAAAAAAAAAAAAEEklgEAAAAAQEokOWuzEpK9UbJdu6XGAK%2B7Kfg%3DAysmYKdJdrEmineKqMl6fo5TnYUO6SIbO1ezwXzNeOoldwD3dr"
+bearer_token = "ENTER BEARER TOKEN"
 
 def create_userids(usernames):
     while usernames:
