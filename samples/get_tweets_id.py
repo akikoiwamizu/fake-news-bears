@@ -9,7 +9,7 @@ print("0. Making Directories")
 working_directory=os.getcwd()
 twitter_directory='tweets_in/'
 twitter_out_directory='tweets_out/'
-json_directory='json_out/'
+json_directory='json_tweets_out/'
 
 cmd_tod = "mkdir {0}/{1}".format(working_directory,twitter_out_directory)
 cmd_jd = "mkdir {0}/{1}".format(working_directory,json_directory)
@@ -63,7 +63,10 @@ def bearer_oauth(r):
 def connect_to_endpoint(url):
     response = requests.request("GET", url, auth=bearer_oauth)
     # print(response.status_code)
-    if response.status_code != 200:
+    if response.status_code == 429:
+        print("Rate Limittier, pausing for 15 min")
+        time.sleep(int(response.headers["Retry-After"]))
+    elif response.status_code != 200:
         raise Exception(
             "Request returned an error: {} {}".format(
                 response.status_code, response.text
@@ -89,11 +92,9 @@ def main():
             with open(file_out, 'a+') as f:
                 data=json.dumps(json_response)
                 json.dump(data,f,indent=4,separators=(',',': '))
-                print("3. Dumping data to JSON file in json directory")
+                print(f"3. Dumping data to JSON file in json directory. {len(lines)} Tweets to go")
             del lines[:100]
-
-        
-
-
+    print(f"All Done! Tweet Data is located in {json_directory}")
+    
 if __name__ == "__main__":
     main()
