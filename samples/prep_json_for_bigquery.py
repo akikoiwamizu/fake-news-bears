@@ -9,10 +9,35 @@ print(f"type json object: {type(json_obj)}")
 
 print(f"json keys: {json_obj.keys()}")
 
-value = json_obj["top"]
+top_list = json_obj["top"]
 
-print(f"type top value: {type(value)}")
-print(f"top list first element type: {type(value[0])}")
+print(f"type top value: {type(top_list)}")
+print(f"top list size: {len(top_list)}")
+print(f"top list first element type: {type(top_list[0])}")
 
-top_dict01 = value[0]
-print(f"top_dict01 keys: {top_dict01.keys()}")
+final_list = []
+# go through list of dict (data-error pairs) items
+for i in range(0, len(top_list)):
+
+    list_dict = top_list[i]
+    print(f"top list[{i}] is dict, with keys: {list_dict.keys()}")
+
+    # get the data from the dict
+    data_list = list_dict["data"]
+
+    # copy list under data into new item
+    print(f"type of data_list is:{type(data_list)}")
+    print(f"length of data_list is: {len(data_list)}")
+
+    final_list.extend(data_list)
+
+# save list to json file
+print(f"final_list length: {len(final_list)}")
+with open("samples/json_users_out/usa_congress_twitter_users.json", "w") as outfile:
+
+    for i in range(0, len(final_list)):
+        s = json.dumps(final_list[i])
+
+        # write one line of json (without an ending comma)
+        # this formats the data correctly for BigQuery ingestion
+        outfile.write(s + "\n")
