@@ -68,6 +68,7 @@ def get_Labels(task):
     return labels
 
 def get_scoring_list(dataframe,model):
+    validateDataFrame(dataframe)
     userPartition = dataframe['author_id'].to_list()
     totalUsers = dataframe['author_id'].nunique()
     scoring_list = []
@@ -93,6 +94,15 @@ def get_scoring_list(dataframe,model):
         log.debug(f"\t Duration of loop is {round((endTime-startTime),3)} seconds.  Previous iterations are {time_list}")
     return scoring_list
 
+def validateDataFrame(dataframe):
+    if isinstance(dataframe, pd.DataFrame):
+        if {'author_id', 'text'}.issubset(dataframe.columns):
+            log.debug('\t Dataframe Validated')
+        else:
+            raise Exception("Dataframe doesn't have [author_id] or [text] columns. Verify dataframe.columns exist")
+    else:
+        raise Exception("Object is not DataFrame.  Please pass in valid DataFrame")
+    
 ## Creating Directories
 model_dir = os.getcwd() + '/model'
 os.makedirs(model_dir, exist_ok=True)
