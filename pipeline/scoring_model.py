@@ -99,7 +99,7 @@ def validateDataFrame(dataframe):
         if {'author_id', 'text'}.issubset(dataframe.columns):
             log.debug('\t Dataframe Validated')
         else:
-            raise Exception("Dataframe doesn't have [author_id] or [text] columns. Verify dataframe.columns exist")
+            raise Exception("Dataframe doesn't have [author_id] or [text] columns. Verify dataframe.columns exist and rename if necessary")
     else:
         raise Exception("Object is not DataFrame.  Please pass in valid DataFrame")
     
