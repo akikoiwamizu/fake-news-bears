@@ -16,6 +16,9 @@ import sys
 ## We make a partition of the dataframe_tweets. We then modify part of it but its' not part of the parent dataframe so this error comes up. This is set to ignore that error since we append to list and it doesn't matter
 pd.options.mode.chained_assignment = None 
 
+## Supress scientific notation for values
+pd.set_option('display.float_format', str)
+
 ## Change to INFO or DEBUG for logs.
 log.basicConfig(level=log.INFO)
 
@@ -64,35 +67,84 @@ def get_Labels(task):
         html = f.read().decode('utf-8').split("\n")
         csvreader = csv.reader(html, delimiter='\t')
     labels = [row[1] for row in csvreader if len(row) > 1]
-    log.debug(f"Labels are {labels}")
+    log.debug(f"\t Labels are {labels}")
     return labels
 
-def get_scoring_list(dataframe,model):
+#author_id,tweet_id,score[non-hate,ironic]
+def get_scoring_lists(dataframe,model):
     validateDataFrame(dataframe)
-    userPartition = dataframe['author_id'].to_list()
+    label = get_Labels(task)[0]
+    userPartition = dataframe['author_id'].unique().tolist()
     totalUsers = dataframe['author_id'].nunique()
-    scoring_list = []
+    user_scoring_list = []
+    tweet_scoring_list = []
     time_list=[]
     progress = 0
     for user in userPartition:
         startTime = time.time()
         dataframe_user=dataframe.loc[dataframe['author_id'] == user]
-        log.debug(f"\t There are {len(dataframe_user)} text rows to go through for this user")
+        log.debug(f"\t There are {len(dataframe_user)} text rows to go through for user_id:{user}")
         encoded_series = dataframe_user['text'].apply(lambda x: tokenizer(x, return_tensors='pt'))
         features = encoded_series.apply(lambda x: model(**x))
         scores = features.apply(lambda x: x[0][0].detach().numpy())
         scores_softmax = scores.apply(lambda x: softmax(x))
-        dataframe_user['non-hate'] = scores_softmax.apply(lambda x: x[0])
-        non_hate_value = round(dataframe_user['non-hate'].mean(),4) ##For now using mean but can change to median easily
-        top_3_btweets = dataframe_user[['non-hate','text']].sort_values(by=['non-hate'], ascending=True).head(3).values.tolist()
-        scoring_list.append([user,non_hate_value,top_3_btweets])
+        dataframe_user[label] = scores_softmax.apply(lambda x: x[0])
+        score_value = round(dataframe_user[label].mean(),4) ##For now using mean but can change to median easily
+        top_3_btweets = dataframe_user[[label,'text']].sort_values(by=[label], ascending=True).head(3).values.tolist()
+        user_scoring_list.append([user,score_value,top_3_btweets])
+        tweet_scoring_list.extend(dataframe_user[['author_id','id',label]].values.tolist())
         endTime = time.time()
-        time_list.append([progress,round((endTime-startTime),3)])
-        log.debug(f"\t Scoring List is \n\t {scoring_list}.  \n\t The size of the scoring list is {len(scoring_list)}")
         progress += 1
+        time_list.append([progress,round((endTime-startTime),3)])
+        log.debug(f"\t User Scoring List is \n\t {user_scoring_list}.  \n\t The size of the tweet scoring list is {len(user_scoring_list)}")
+        log.debug(f"\t Tweet Scoring List is \n\t {tweet_scoring_list}.  \n\t The size of the tweet scoring list is {len(tweet_scoring_list)}")
         log.info(f"\t Finished {progress} users. {totalUsers-progress} users to go")
-        log.debug(f"\t Duration of loop is {round((endTime-startTime),3)} seconds.  Previous iterations are {time_list}")
-    return scoring_list
+        log.debug(f"\t Duration of loop is {round((endTime-startTime),3)} seconds. Runs so far are {time_list}")
+    return user_scoring_list, tweet_scoring_list
+
+def get_scoring_csvs(dataframe,model):
+    validateDataFrame(dataframe)
+    label = get_Labels(task)[0]
+    userPartition = dataframe['author_id'].unique().tolist()
+    totalUsers = dataframe['author_id'].nunique()
+    users_directory = os.getcwd()+'/users_score/'
+    tweets_directory = os.getcwd()+'/tweets_score/'
+    log.debug(f"\t Making Users directory:{users_directory}\n\t Making Tweets directory:{tweets_directory}")
+    os.makedirs(users_directory, exist_ok=True)
+    os.makedirs(tweets_directory, exist_ok=True)
+    time_list=[]
+    progress = 0
+    for user in userPartition:
+        user_scoring_list = []
+        tweet_scoring_list = []
+        userFile = users_directory + "user_" + str(user) + "_" + str.replace(label,'-','_') + ".csv"
+        tweetFile = tweets_directory + "tweets_user_" + str(user) + "_" + str.replace(label,'-','_') + ".csv"
+        startTime = time.time()
+        dataframe_user=dataframe.loc[dataframe['author_id'] == user].astype(str) ##Prevent scientific notation
+        log.debug(f"\t There are {len(dataframe_user)} text rows to go through for user_id:{user}")
+        encoded_series = dataframe_user['text'].apply(lambda x: tokenizer(x, return_tensors='pt'))
+        features = encoded_series.apply(lambda x: model(**x))
+        scores = features.apply(lambda x: x[0][0].detach().numpy())
+        scores_softmax = scores.apply(lambda x: softmax(x))
+        dataframe_user[label] = scores_softmax.apply(lambda x: x[0])
+        score_value = round(dataframe_user[label].mean(),4) ##For now using mean but can change to median easily
+        top_3_btweets = dataframe_user[[label,'text']].sort_values(by=[label], ascending=True).head(3).values.tolist()
+        user_scoring_list.append([user,score_value,top_3_btweets])
+        tweet_scoring_list.extend(dataframe_user[['author_id','id',label]].values.tolist())
+        user_output_label = "low_3_" + str.replace(label,'-','_') + "_tweets"
+        user_DF = pd.DataFrame(user_scoring_list, columns = ['user_id',label,user_output_label])
+        tweet_DF = pd.DataFrame(tweet_scoring_list, columns = ['user_id','tweet_id',label]) 
+        user_DF.to_csv(userFile, encoding='utf-8',index=False)
+        tweet_DF.to_csv(tweetFile,encoding='utf-8', index=False)
+        endTime = time.time()
+        progress += 1
+        time_list.append([progress,round((endTime-startTime),3)])
+        log.debug(f"\t User Scoring List is \n\t {user_scoring_list}.  \n\t The size of the tweet scoring list is {len(user_scoring_list)}")
+        log.debug(f"\t Tweet Scoring List is \n\t {tweet_scoring_list}.  \n\t The size of the tweet scoring list is {len(tweet_scoring_list)}")
+        log.info(f"\t Finished {progress} users. {totalUsers-progress} users to go")
+        log.debug(f"\t Duration of loop is {round((endTime-startTime),3)} seconds. Runs so far are {time_list}")
+        time.sleep(3) ##Throttles CPU to make it manageable.  Encoding step is a ton of CPU cost and theirs no way around it.
+    return progress
 
 def validateDataFrame(dataframe):
     if isinstance(dataframe, pd.DataFrame):
@@ -115,7 +167,7 @@ log.debug(f"roberta_model:{roberta_model}")
 ## Check if Tokenizer file exists. If it does use already solved model and no need to redownload
 if Path(tokenizer_config_file).is_file():
     log.info(f"\t Tokenizer File is ready. Loading Token File")
-    log.debug(f"\t {tokenizer_config_file}")
+    log.debug(f"\t Token config file:{tokenizer_config_file}")
     tokenizer = AutoTokenizer.from_pretrained(roberta_model)
 else:
     log.info(f"\t Downloading Token files to {roberta_model} directory")
@@ -130,5 +182,5 @@ else:
     log.info(f"\t Downloading Model files to {roberta_model} directory")
     model = get_Model("cardiffnlp/twitter-roberta-base",task)
 
-df_input = pd.read_csv('../samples/data.csv')
-result = get_scoring_list(df_input,model)
+df_input = pd.read_csv('../samples/tweet_data_all.csv')
+result = get_scoring_csvs(df_input,model)
