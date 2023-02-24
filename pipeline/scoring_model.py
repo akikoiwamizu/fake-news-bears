@@ -20,12 +20,13 @@ pd.options.mode.chained_assignment = None
 pd.set_option('display.float_format', str)
 
 ## Change to INFO or DEBUG for logs.
-log.basicConfig(level=log.INFO)
+log.basicConfig(level=log.DEBUG)
 
 # Tasks:
 # emoji, emotion, hate, irony, offensive, sentiment
 # stance/abortion, stance/atheism, stance/climate, stance/feminist, stance/hillary
 potentialTasks = ['emoji', 'emotion', 'hate' ,'irony', 'offensive', 'sentiment']
+defaultModel = "cardiffnlp/twitter-roberta-base"
 if len(sys.argv)<2:
     task = "hate" ##default choice
 else:
@@ -44,20 +45,45 @@ def preprocess(text):
         new_text.append(t)
     return " ".join(new_text)
 
+## Will make this yargs later on for model directory
+## Default choice - twitter-roberta-base
 def get_Tokenizer(token_name,task):
+    model_dir = os.getcwd() + '/model'
+    os.makedirs(model_dir, exist_ok=True)
+
     TOKEN_repo = f"{token_name}-{task}"
-    FILE_t_repo = f"./model/{TOKEN_repo}"
-    log.info("\t Getting Tokenizer as file does not exist")
-    tokenizer = AutoTokenizer.from_pretrained(TOKEN_repo,force_download=True)
-    tokenizer.save_pretrained(FILE_t_repo) ##Choosing to save token files so that we can reuse when we dockerize and API this setup
+    roberta_model = model_dir + f'/{TOKEN_repo}'
+    tokenizer_config_file = roberta_model + '/tokenizer_config.json'
+
+    if Path(tokenizer_config_file).is_file():
+        log.info(f"\t Tokenizer File is ready. Loading Token File")
+        log.debug(f"\t Token config file:{tokenizer_config_file}")
+        tokenizer = AutoTokenizer.from_pretrained(roberta_model)
+    else:
+        log.info(f"\t Downloading Token files to {roberta_model} directory")
+        FILE_t_repo = f"./model/{TOKEN_repo}"
+        tokenizer = AutoTokenizer.from_pretrained(TOKEN_repo,force_download=True)
+        tokenizer.save_pretrained(FILE_t_repo) ##Choosing to save token files so that we can reuse when we dockerize and API this setup
+
     return tokenizer
 
 def get_Model(model_name,task):
+    model_dir = os.getcwd() + '/model'
+    os.makedirs(model_dir, exist_ok=True)
+
     MODEL_repo = f"{model_name}-{task}"
-    FILE_m_repo = f"./model/{MODEL_repo}"
-    log.info("\t Getting Model as file does not exist")
-    model = AutoModelForSequenceClassification.from_pretrained(MODEL_repo,force_download=True)
-    model.save_pretrained(FILE_m_repo) ##Choosing to save model files so that we can reuse when we dockerize and API this setup
+    roberta_model = model_dir + f'/{MODEL_repo}'
+    model_config_file = roberta_model + '/config.json'
+
+    if Path(model_config_file).is_file():
+        log.info(f"\t Model File is ready. Loading Model File")
+        model = AutoModelForSequenceClassification.from_pretrained(roberta_model)
+    else:
+        log.info(f"\t Downloading Model files to {roberta_model} directory")
+        FILE_m_repo = f"./model/{MODEL_repo}"
+        model = AutoModelForSequenceClassification.from_pretrained(MODEL_repo,force_download=True)
+        model.save_pretrained(FILE_m_repo) ##Choosing to save model files so that we can reuse when we dockerize and API this setup
+        
     return model
 
 def get_Labels(task):
@@ -70,56 +96,56 @@ def get_Labels(task):
     log.debug(f"\t Labels are {labels}")
     return labels
 
-#author_id,tweet_id,score[non-hate,ironic]
-def get_scoring_lists(dataframe,model):
-    validateDataFrame(dataframe)
-    label = get_Labels(task)[0]
-    userPartition = dataframe['author_id'].unique().tolist()
-    totalUsers = dataframe['author_id'].nunique()
-    user_scoring_list = []
-    tweet_scoring_list = []
-    time_list=[]
-    progress = 0
-    for user in userPartition:
-        startTime = time.time()
-        dataframe_user=dataframe.loc[dataframe['author_id'] == user]
-        log.debug(f"\t There are {len(dataframe_user)} text rows to go through for user_id:{user}")
-        encoded_series = dataframe_user['text'].apply(lambda x: tokenizer(x, return_tensors='pt'))
-        features = encoded_series.apply(lambda x: model(**x))
-        scores = features.apply(lambda x: x[0][0].detach().numpy())
-        scores_softmax = scores.apply(lambda x: softmax(x))
-        dataframe_user[label] = scores_softmax.apply(lambda x: x[0])
-        score_value = round(dataframe_user[label].mean(),4) ##For now using mean but can change to median easily
-        top_3_btweets = dataframe_user[[label,'text']].sort_values(by=[label], ascending=True).head(3).values.tolist()
-        user_scoring_list.append([user,score_value,top_3_btweets])
-        tweet_scoring_list.extend(dataframe_user[['author_id','id',label]].values.tolist())
-        endTime = time.time()
-        progress += 1
-        time_list.append([progress,round((endTime-startTime),3)])
-        log.debug(f"\t User Scoring List is \n\t {user_scoring_list}.  \n\t The size of the tweet scoring list is {len(user_scoring_list)}")
-        log.debug(f"\t Tweet Scoring List is \n\t {tweet_scoring_list}.  \n\t The size of the tweet scoring list is {len(tweet_scoring_list)}")
-        log.info(f"\t Finished {progress} users. {totalUsers-progress} users to go")
-        log.debug(f"\t Duration of loop is {round((endTime-startTime),3)} seconds. Runs so far are {time_list}")
-    return user_scoring_list, tweet_scoring_list
+def writeListtoFile(fileList,directory):
+    log.debug(f"\t Writing data to file in {directory}")
+    with open(rf"{directory}", 'w+') as fp:
+        for item in fileList:
+            fp.write("%s\n" % item)
 
-def get_scoring_csvs(dataframe,model):
+def readFiletoList(directory):
+    fileList = []
+    with open(rf"{directory}", 'r') as fp:
+        for line in fp:
+            item = line[:-1]
+            fileList.append(item)
+    return fileList
+
+def get_scoring_csvs(dataframe,task):
     validateDataFrame(dataframe)
     label = get_Labels(task)[0]
-    userPartition = dataframe['author_id'].unique().tolist()
-    totalUsers = dataframe['author_id'].nunique()
-    users_directory = os.getcwd()+'/users_score/'
-    tweets_directory = os.getcwd()+'/tweets_score/'
+    tokenizer = get_Tokenizer(defaultModel,task)
+    model = get_Model(defaultModel,task)
+
+    saveDirectory = os.getcwd()+'/savestate'
+    os.makedirs(saveDirectory, exist_ok=True)
+    saveFile = saveDirectory + f"/{task}_users.txt"
+
+    if Path(saveFile).is_file():
+        log.info(f"\t Saved File exists from previous run. Continuing from Saved File in {saveFile}")
+        userPartition = readFiletoList(saveFile)
+        totalUsers = len(userPartition)
+    else:
+        log.info(f"\t First time running job for {label}. Save fie is in {saveFile}")
+        userPartition = dataframe['author_id'].unique().tolist()
+        writeListtoFile(userPartition,saveFile)
+        totalUsers = len(userPartition)
+
+    users_directory = os.getcwd()+f'/users_score_{task}/'
+    tweets_directory = os.getcwd()+f'/tweets_score_{task}/'
     log.debug(f"\t Making Users directory:{users_directory}\n\t Making Tweets directory:{tweets_directory}")
     os.makedirs(users_directory, exist_ok=True)
     os.makedirs(tweets_directory, exist_ok=True)
+
     time_list=[]
     progress = 0
+
     for user in userPartition:
         user_scoring_list = []
         tweet_scoring_list = []
         userFile = users_directory + "user_" + str(user) + "_" + str.replace(label,'-','_') + ".csv"
         tweetFile = tweets_directory + "tweets_user_" + str(user) + "_" + str.replace(label,'-','_') + ".csv"
         startTime = time.time()
+
         dataframe_user=dataframe.loc[dataframe['author_id'] == user].astype(str) ##Prevent scientific notation
         log.debug(f"\t There are {len(dataframe_user)} text rows to go through for user_id:{user}")
         encoded_series = dataframe_user['text'].apply(lambda x: tokenizer(x, return_tensors='pt'))
@@ -136,6 +162,17 @@ def get_scoring_csvs(dataframe,model):
         tweet_DF = pd.DataFrame(tweet_scoring_list, columns = ['user_id','tweet_id',label]) 
         user_DF.to_csv(userFile, encoding='utf-8',index=False)
         tweet_DF.to_csv(tweetFile,encoding='utf-8', index=False)
+
+        with open(saveFile, "r") as fp: ##Fixing Saved File in case it needs to restart. 
+            lines = fp.readlines()
+
+        with open(saveFile, "w") as fp: ##Writing remaining user_ids back in 
+            for line in lines:
+                if line.strip("\n") != str(user):
+                    fp.write(line)
+                else:
+                    log.debug(f"\t removing user {user}")
+
         endTime = time.time()
         progress += 1
         time_list.append([progress,round((endTime-startTime),3)])
@@ -143,8 +180,8 @@ def get_scoring_csvs(dataframe,model):
         log.debug(f"\t Tweet Scoring List is \n\t {tweet_scoring_list}.  \n\t The size of the tweet scoring list is {len(tweet_scoring_list)}")
         log.info(f"\t Finished {progress} users. {totalUsers-progress} users to go")
         log.debug(f"\t Duration of loop is {round((endTime-startTime),3)} seconds. Runs so far are {time_list}")
-        time.sleep(3) ##Throttles CPU to make it manageable.  Encoding step is a ton of CPU cost and theirs no way around it.
-    return progress
+        time.sleep(2) ##Throttles CPU to make it manageable.  Encoding step is a ton of CPU cost and theirs no way around it.
+    return users_directory,tweets_directory
 
 def validateDataFrame(dataframe):
     if isinstance(dataframe, pd.DataFrame):
@@ -154,33 +191,13 @@ def validateDataFrame(dataframe):
             raise Exception("Dataframe doesn't have [author_id] or [text] columns. Verify dataframe.columns exist and rename if necessary")
     else:
         raise Exception("Object is not DataFrame.  Please pass in valid DataFrame")
-    
-## Creating Directories
-model_dir = os.getcwd() + '/model'
-os.makedirs(model_dir, exist_ok=True)
-log.debug({model_dir})
-## Will make this yargs later on for model directory
-roberta_model = model_dir + '/cardiffnlp' + f'/twitter-roberta-base-{task}'
-tokenizer_config_file = roberta_model + '/tokenizer_config.json'
-model_config_file = roberta_model + '/config.json'
-log.debug(f"roberta_model:{roberta_model}")
-## Check if Tokenizer file exists. If it does use already solved model and no need to redownload
-if Path(tokenizer_config_file).is_file():
-    log.info(f"\t Tokenizer File is ready. Loading Token File")
-    log.debug(f"\t Token config file:{tokenizer_config_file}")
-    tokenizer = AutoTokenizer.from_pretrained(roberta_model)
-else:
-    log.info(f"\t Downloading Token files to {roberta_model} directory")
-    tokenizer = get_Tokenizer("cardiffnlp/twitter-roberta-base",task)
-    
-## Check if Model file exists. If it does use already solved model and no need to redownload
-if Path(model_config_file).is_file():
-    log.info(f"\t Model File is ready. Loading Model File")
-    model = AutoModelForSequenceClassification.from_pretrained(roberta_model)
-else:
-    log.debug(f"\t {Path(model_config_file).is_file()},{model_config_file}")
-    log.info(f"\t Downloading Model files to {roberta_model} directory")
-    model = get_Model("cardiffnlp/twitter-roberta-base",task)
 
 df_input = pd.read_csv('../samples/tweet_data_all.csv')
-result = get_scoring_csvs(df_input,model)
+tasks = [ 'hate' ,'irony', 'offensive']
+directories=[]
+for task in tasks:
+    users_directory,tweet_directory = get_scoring_csvs(df_input,task)
+    log.info(f"\t Finished {task}. {task} user files are in {users_directory} and {task} tweet files are in {tweet_directory}")
+    directories.extend([users_directory,tweet_directory])
+
+log.info(f"Finished All Tasks! Files are in {directories}")
