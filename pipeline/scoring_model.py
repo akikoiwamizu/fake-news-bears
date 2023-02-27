@@ -20,21 +20,36 @@ pd.options.mode.chained_assignment = None
 pd.set_option('display.float_format', str)
 
 ## Change to INFO or DEBUG for logs.
-log.basicConfig(level=log.DEBUG)
+log.basicConfig(level=log.INFO)
 
 # Tasks:
 # emoji, emotion, hate, irony, offensive, sentiment
 # stance/abortion, stance/atheism, stance/climate, stance/feminist, stance/hillary
-potentialTasks = ['emoji', 'emotion', 'hate' ,'irony', 'offensive', 'sentiment']
-defaultModel = "cardiffnlp/twitter-roberta-base"
-if len(sys.argv)<2:
-    task = "hate" ##default choice
-else:
-    task = sys.argv[1]
-    if (task in potentialTasks):
-        log.info(f"\t Task is a valid choice. Moving on")
+
+## For now only doing 3 ML binary ml models: hate, irony and offensive. Will add more as we see fit.  
+potentialTasks = ['hate' ,'irony', 'offensive','all']
+defaultModel = "cardiffnlp/twitter-roberta-base" ## Choosing this model for this script. Will add other models in different scripts and import base functions from this script
+task = sys.argv[1] ##which task are you looking for
+path = sys.argv[2] ##location of CSV file
+
+def inputValidation(task, path):
+    if len(sys.argv) != 3:
+        raise Exception("Not enough arguments or Too many Arguments.  Try script again")
+        sys.exit(1)
     else:
-        raise Exception(f"Task is not a valid Task. Choose one of the following: {potentialTasks}")
+        log.debug("Arguments are good")
+    if (task.lower() in potentialTasks):
+        log.info(f"\t Task is a valid choice. Moving on")
+        task = task.lower()
+    else:
+        raise Exception(f"\t Task is not a valid Task. Choose one of the following: {potentialTasks}")
+        sys.exit(1)
+    if (Path(path).is_file()):
+        log.info(f"\t CSV file exists. Will Validate later on")
+    else: 
+        raise Exception(f"\t {path} is not valid path.\n Please check that csv file exists Script requires Full Path and not relative paths")
+        sys.exit(1)
+    return task,path
 
 # Preprocess text (username and link placeholders)
 def preprocess(text):
@@ -45,6 +60,16 @@ def preprocess(text):
         new_text.append(t)
     return " ".join(new_text)
 
+def getTasks(task):
+    if task == "hate":
+        tasks = ["hate"]
+    elif task == "offensive":
+        tasks = ["offensive"]
+    elif task == ["irony"]:
+        tasks = "irony"
+    else:
+        tasks = ["hate","irony","offensive"]
+    return tasks
 ## Will make this yargs later on for model directory
 ## Default choice - twitter-roberta-base
 def get_Tokenizer(token_name,task):
@@ -61,6 +86,7 @@ def get_Tokenizer(token_name,task):
         tokenizer = AutoTokenizer.from_pretrained(roberta_model)
     else:
         log.info(f"\t Downloading Token files to {roberta_model} directory")
+        log.debug(f"\t Model Token file:{tokenizer_config_file}")
         FILE_t_repo = f"./model/{TOKEN_repo}"
         tokenizer = AutoTokenizer.from_pretrained(TOKEN_repo,force_download=True)
         tokenizer.save_pretrained(FILE_t_repo) ##Choosing to save token files so that we can reuse when we dockerize and API this setup
@@ -189,11 +215,14 @@ def validateDataFrame(dataframe):
             log.debug('\t Dataframe Validated')
         else:
             raise Exception("Dataframe doesn't have [author_id] or [text] columns. Verify dataframe.columns exist and rename if necessary")
+            sys.exit(1)
     else:
         raise Exception("Object is not DataFrame.  Please pass in valid DataFrame")
-
-df_input = pd.read_csv('../samples/tweet_data_all.csv')
-tasks = [ 'hate' ,'irony', 'offensive']
+        sys.exit(1)
+    
+inputValidation(task,path)
+df_input = pd.read_csv(f"{path}")
+tasks = getTasks(task)
 directories=[]
 for task in tasks:
     users_directory,tweet_directory = get_scoring_csvs(df_input,task)
