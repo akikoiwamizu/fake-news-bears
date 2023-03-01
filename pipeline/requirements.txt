@@ -232,7 +232,7 @@ pep8==1.7.1
 pexpect @ file:///tmp/build/80754af9/pexpect_1605563209008/work
 pi==0.1.2
 pickleshare @ file:///tmp/build/80754af9/pickleshare_1606932040724/work
-Pillow==8.4.0
+Pillow==9.3.0
 pipenv==2023.2.18
 pipreqs==0.4.11
 pkginfo==1.7.1
