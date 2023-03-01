@@ -32,8 +32,7 @@ print("2. Finished Gathering usernames. Preparing user_ids from usernames")
 # To set your enviornment variables in your terminal run the following line:
 # export 'BEARER_TOKEN'='<your_bearer_token>'
 #Hardcoded for now, working on google cloud function to replace this
-bearer_token = "ENTER BEARER TOKEN"
-
+bearer_token = os.popen("curl https://us-central1-fake-news-bears.cloudfunctions.net/secret_twitter").read()
 def create_userids(usernames):
     while usernames:
         users_100=usernames[:100] ##Twitter only lets you look at 100 user_ids at a time so have to batch them up
