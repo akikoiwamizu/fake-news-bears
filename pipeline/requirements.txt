@@ -212,7 +212,7 @@ numba @ file:///Users/builder/miniconda3/envs/prefect/conda-bld/numba_1635176853
 numexpr @ file:///opt/concourse/worker/volumes/live/8a490d79-0e07-4fed-40fc-a78f896e4811/volume/numexpr_1618856522733/work
 numpy @ file:///opt/concourse/worker/volumes/live/9909a8d0-9b8e-44eb-6059-6c668078c029/volume/numpy_and_numpy_base_1626271794641/work
 numpydoc @ file:///tmp/build/80754af9/numpydoc_1605117425582/work
-oauthlib==3.2.0
+oauthlib==3.2.2
 olefile @ file:///Users/ktietz/demo/mc3/conda-bld/olefile_1629805411829/work
 openpyxl @ file:///tmp/build/80754af9/openpyxl_1632777717936/work
 opt-einsum==3.3.0
