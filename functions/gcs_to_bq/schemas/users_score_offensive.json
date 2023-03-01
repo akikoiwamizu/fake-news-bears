@@ -1,0 +1,17 @@
+[
+{
+     "name": "user_id",
+     "type": "STRING",
+     "mode": "NULLABLE"
+},
+{
+     "name": "offensive_score",
+     "type": "FLOAT64",
+     "mode": "NULLABLE"
+},
+{
+     "name": "top_3_offensive_tweets",
+     "type": "STRING",
+     "mode": "NULLABLE"
+}
+]

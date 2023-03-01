@@ -1,0 +1,17 @@
+[
+{
+     "name": "user_id",
+     "type": "STRING",
+     "mode": "NULLABLE"
+},
+{
+     "name": "tweet_id",
+     "type": "STRING",
+     "mode": "NULLABLE"
+},
+{
+     "name": "not_irony",
+     "type": "FLOAT64",
+     "mode": "NULLABLE"
+}
+]
