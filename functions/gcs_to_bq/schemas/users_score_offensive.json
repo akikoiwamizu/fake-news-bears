@@ -1,0 +1,20 @@
+[
+{
+     "name": "user_id",
+     "type": "STRING",
+     "mode": "NULLABLE",
+     "description": "Unique Twitter user id"
+},
+{
+     "name": "offensive_score",
+     "type": "FLOAT64",
+     "mode": "NULLABLE",
+     "description": "Model score for a given user"
+},
+{
+     "name": "top_3_offensive_tweets",
+     "type": "STRING",
+     "mode": "NULLABLE",
+     "description": "A given user's top three most offensive tweets"
+}
+]
