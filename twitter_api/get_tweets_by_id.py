@@ -4,36 +4,39 @@ import json
 from tweet_funcs import tweet_id_stripper
 import time
 
-#Making Directories
+# Making Directories
 print("0. Making Directories")
-working_directory=os.getcwd()
-twitter_directory='tweets_in/'
-twitter_out_directory='tweets_out/'
-json_directory='json_tweets_out/'
+working_directory = os.getcwd()
+twitter_directory = "tweets_in/"
+twitter_out_directory = "tweets_out/"
+json_directory = "json_tweets_out/"
 
-cmd_tod = "mkdir {0}/{1}".format(working_directory,twitter_out_directory)
-cmd_jd = "mkdir {0}/{1}".format(working_directory,json_directory)
+cmd_tod = "mkdir {0}/{1}".format(working_directory, twitter_out_directory)
+cmd_jd = "mkdir {0}/{1}".format(working_directory, json_directory)
 os.system(cmd_tod)
 os.system(cmd_jd)
 
-#Getting Twitter ID files
+# Getting Twitter ID files
 print("1. Grabbing Twitter Files with tweet_id in them")
-tweet_files=os.listdir(twitter_directory)
-tweet_files.remove('.DS_Store')
+tweet_files = os.listdir(twitter_directory)
+tweet_files.remove(".DS_Store")
 for file in tweet_files:
-    file_d=twitter_directory+file
-    file_out=twitter_out_directory+file[:-4]+"out"+".csv"
-    tweet_id_stripper(file_d,file_out)
+    file_d = twitter_directory + file
+    file_out = twitter_out_directory + file[:-4] + "out" + ".csv"
+    tweet_id_stripper(file_d, file_out)
 print("2. Finished Gathering input files. Ready for requests")
-tweet_id_files=os.listdir(twitter_out_directory)
+tweet_id_files = os.listdir(twitter_out_directory)
 try:
-    tweet_id_files.remove('.DS_Store')
+    tweet_id_files.remove(".DS_Store")
 except ValueError:
     print("\t No DS_Store file found.  Continuing")
 # To set your enviornment variables in your terminal run the following line:
 # export 'BEARER_TOKEN'='<your_bearer_token>'
-#Hardcoded for now, working on google cloud function to replace this
-bearer_token = os.popen("curl https://us-central1-fake-news-bears.cloudfunctions.net/secret_twitter").read()
+# Hardcoded for now, working on google cloud function to replace this
+bearer_token = os.popen(
+    "curl https://us-central1-fake-news-bears.cloudfunctions.net/secret_twitter"
+).read()
+
 
 def create_url(ids):
     tweet_fields = "tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,source,text,withheld"
@@ -45,11 +48,8 @@ def create_url(ids):
     # possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets,possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets,
     # source, text, and withheld
     # You can adjust ids to include a single Tweets.
-    url = "https://api.twitter.com/2/tweets?ids={}&{}".format(
-        ids, tweet_fields)
+    url = "https://api.twitter.com/2/tweets?ids={}&{}".format(ids, tweet_fields)
     return url
-
-
 
 
 def bearer_oauth(r):
@@ -70,9 +70,7 @@ def connect_to_endpoint(url):
         time.sleep(int(response.headers["Retry-After"]))
     elif response.status_code != 200:
         raise Exception(
-            "Request returned an error: {} {}".format(
-                response.status_code, response.text
-            )
+            "Request returned an error: {} {}".format(response.status_code, response.text)
         )
     return response.json()
 
@@ -80,23 +78,24 @@ def connect_to_endpoint(url):
 def main():
     timestr = time.strftime("%Y%m%d-%H%M%S")
     for file in tweet_id_files:
-        i=0
-        file=twitter_out_directory+file
-        with open(file,"r") as f:
+        i = 0
+        file = twitter_out_directory + file
+        with open(file, "r") as f:
             lines = f.read().splitlines()
-            i+=1
+            i += 1
         while lines:
-            tweets_100=lines[:100]
-            ids=','.join(tweets_100)
+            tweets_100 = lines[:100]
+            ids = ",".join(tweets_100)
             url = create_url(ids)
             json_response = connect_to_endpoint(url)
-            file_out=json_directory+timestr+'_tweets_'+str(i)+'.json'
-            with open(file_out, 'a+') as f:
-                data=json.dumps(json_response)
-                json.dump(data,f,indent=4,separators=(',',': '))
+            file_out = json_directory + timestr + "_tweets_" + str(i) + ".json"
+            with open(file_out, "a+") as f:
+                data = json.dumps(json_response)
+                json.dump(data, f, indent=4, separators=(",", ": "))
                 print(f"3. Dumping data to JSON file in json directory. {len(lines)} Tweets to go")
             del lines[:100]
     print(f"All Done! Tweet Data is located in {json_directory}")
-    
+
+
 if __name__ == "__main__":
     main()
