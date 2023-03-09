@@ -20,7 +20,7 @@ pd.options.mode.chained_assignment = None
 pd.set_option('display.float_format', str)
 
 ## Change to INFO or DEBUG for logs.
-log.basicConfig(level=log.INFO)
+log.basicConfig(level=log.DEBUG)
 
 # Tasks:
 # emoji, emotion, hate, irony, offensive, sentiment
@@ -29,27 +29,30 @@ log.basicConfig(level=log.INFO)
 ## For now only doing 3 ML binary ml models: hate, irony and offensive. Will add more as we see fit.  
 potentialTasks = ['hate' ,'irony', 'offensive','all']
 defaultModel = "cardiffnlp/twitter-roberta-base" ## Choosing this model for this script. Will add other models in different scripts and import base functions from this script
-task = sys.argv[1] ##which task are you looking for
-path = sys.argv[2] ##location of CSV file
-
+task = 'hate' ##which task are you looking for
+path = '/Users/rohin/Desktop/tweet_data_all.csv' ##location of CSV file
+flag = "debug"
 def inputValidation(task, path):
-    if len(sys.argv) != 3:
-        raise Exception("Not enough arguments or Too many Arguments.  Try script again")
-        sys.exit(1)
+    if flag !="debug":
+        if len(sys.argv) != 3:
+            raise Exception("Not enough arguments or Too many Arguments.  Try script again")
+            sys.exit(1)
+        else:
+            log.debug("Arguments are good")
+        if (task.lower() in potentialTasks):
+            log.info(f"\t Task is a valid choice. Moving on")
+            task = task.lower()
+        else:
+            raise Exception(f"\t Task is not a valid Task. Choose one of the following: {potentialTasks}")
+            sys.exit(1)
+        if (Path(path).is_file()):
+            log.info(f"\t CSV file exists. Will Validate later on")
+        else: 
+            raise Exception(f"\t {path} is not valid path.\n Please check that csv file exists Script requires Full Path and not relative paths")
+            sys.exit(1)
+        return task,path
     else:
-        log.debug("Arguments are good")
-    if (task.lower() in potentialTasks):
-        log.info(f"\t Task is a valid choice. Moving on")
-        task = task.lower()
-    else:
-        raise Exception(f"\t Task is not a valid Task. Choose one of the following: {potentialTasks}")
-        sys.exit(1)
-    if (Path(path).is_file()):
-        log.info(f"\t CSV file exists. Will Validate later on")
-    else: 
-        raise Exception(f"\t {path} is not valid path.\n Please check that csv file exists Script requires Full Path and not relative paths")
-        sys.exit(1)
-    return task,path
+        return task,path
 
 # Preprocess text (username and link placeholders)
 def preprocess(text):
@@ -172,7 +175,7 @@ def get_scoring_csvs(dataframe,task):
         tweetFile = tweets_directory + "tweets_user_" + str(user) + "_" + str.replace(label,'-','_') + ".csv"
         startTime = time.time()
 
-        dataframe_user=dataframe.loc[dataframe['author_id'] == user].astype(str) ##Prevent scientific notation
+        dataframe_user=dataframe.loc[dataframe['author_id'].astype(str) == user].astype(str) ##Prevent scientific notation
         log.debug(f"\t There are {len(dataframe_user)} text rows to go through for user_id:{user}")
         encoded_series = dataframe_user['text'].apply(lambda x: tokenizer(x, return_tensors='pt'))
         features = encoded_series.apply(lambda x: model(**x))
@@ -186,6 +189,9 @@ def get_scoring_csvs(dataframe,task):
         user_output_label = "low_3_" + str.replace(label,'-','_') + "_tweets"
         user_DF = pd.DataFrame(user_scoring_list, columns = ['user_id',label,user_output_label])
         tweet_DF = pd.DataFrame(tweet_scoring_list, columns = ['user_id','tweet_id',label]) 
+        if len(tweet_DF.index) == 0:
+            log.debug("DF is empty")
+            log.debug(dataframe_user['text'])
         user_DF.to_csv(userFile, encoding='utf-8',index=False)
         tweet_DF.to_csv(tweetFile,encoding='utf-8', index=False)
 
@@ -212,6 +218,7 @@ def get_scoring_csvs(dataframe,task):
 def validateDataFrame(dataframe):
     if isinstance(dataframe, pd.DataFrame):
         if {'author_id', 'text'}.issubset(dataframe.columns):
+            dataframe['author_id'] = dataframe['author_id'].astype(str)
             log.debug('\t Dataframe Validated')
         else:
             raise Exception("Dataframe doesn't have [author_id] or [text] columns. Verify dataframe.columns exist and rename if necessary")
