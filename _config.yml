@@ -11,74 +11,69 @@ description: "Repository for UC Berkeley MIDS Capstone Project (Spring 2023) for
 people:
 - name: Akiko Iwamizu
   pic: 1
-  position: Lead Designer
+  position: SME & App Development
   social:
-    - title: twitter
-      url: #
-    - title: facebook
-      url: #
-    - title: stack-overflow
-      url: #
+    - title: email
+      url: #akikoiwamizu@gmail.com
+    - title: github
+      url: #https://github.com/akikoiwamizu/
+    - title: linkedin
+      url: #https://www.linkedin.com/in/akikoiwamizu/
 
 - name: Brook Bi
   pic: 2
-  position: Lead Marketer
+  position: Project Management
   social:
-    - title: twitter
+    - title: email
       url: #
-    - title: facebook
+    - title: github
       url: #
     - title: linkedin
       url: #
 
 - name: Giorgio Soggiu
   pic: 3
-  position: Lead Developer
+  position: Exploratory Data Analysis
   social:
-    - title: twitter
+    - title: email
       url: #
-    - title: facebook
+    - title: github
       url: #
-    - title: google-plus
+    - title: linkedin
       url: #
 
 - name: Jason Yang
-  pic: 3
-  position: Lead Developer
+  pic: 4
+  position: Product Management
   social:
-    - title: twitter
+    - title: email
       url: #
-    - title: facebook
+    - title: github
       url: #
-    - title: google-plus
+    - title: linkedin
       url: #
 
 - name: Razal Minhas
-  pic: 3
-  position: Lead Developer
+  pic: 5
+  position: ML Engineering
   social:
-    - title: twitter
+    - title: email
       url: #
-    - title: facebook
+    - title: github
       url: #
-    - title: google-plus
+    - title: linkedin
       url: #
 
 - name: Rohin Chabra
-  pic: 3
-  position: Lead Developer
+  pic: 6
+  position: Data Engineering
   social:
-    - title: twitter
+    - title: email
       url: #
-    - title: facebook
+    - title: github
       url: #
-    - title: google-plus
+    - title: linkedin
       url: #
-
-# Postal address (add as many lines as necessary)
-address:
-  - line: UC Berkeley 110 Sproul Hall
-  - line: Berkeley, CA 94720
 
 # Build settings
 markdown: kramdown
