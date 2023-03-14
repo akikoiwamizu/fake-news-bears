@@ -4,12 +4,12 @@ baseurl:
 # Site settings
 title: Fake News Bears
 email: aiwamizu@berkeley.edu
-description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
+description: "Repository for UC Berkeley MIDS Capstone Project (Spring 2023) for team Fake News Bears looking at US politician Twitter data to assess the spread of and exposure to disinformation online."
 
 
 # Team names, titles and social links
 people:
-- name: Kay Garland
+- name: Akiko Iwamizu
   pic: 1
   position: Lead Designer
   social:
@@ -20,7 +20,7 @@ people:
     - title: stack-overflow
       url: #
 
-- name: Larry Parker
+- name: Brook Bi
   pic: 2
   position: Lead Marketer
   social:
@@ -31,7 +31,7 @@ people:
     - title: linkedin
       url: #
 
-- name: Diana Petersen
+- name: Giorgio Soggiu
   pic: 3
   position: Lead Developer
   social:
@@ -42,14 +42,38 @@ people:
     - title: google-plus
       url: #
 
-# Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
-social:
-  - title: twitter
-    url:
-  - title: facebook
-    url:
-  - title: github
-    url: https://github.com/akikoiwamizu/fake-news-bears
+- name: Jason Yang
+  pic: 3
+  position: Lead Developer
+  social:
+    - title: twitter
+      url: #
+    - title: facebook
+      url: #
+    - title: google-plus
+      url: #
+
+- name: Razal Minhas
+  pic: 3
+  position: Lead Developer
+  social:
+    - title: twitter
+      url: #
+    - title: facebook
+      url: #
+    - title: google-plus
+      url: #
+
+- name: Rohin Chabra
+  pic: 3
+  position: Lead Developer
+  social:
+    - title: twitter
+      url: #
+    - title: facebook
+      url: #
+    - title: google-plus
+      url: #
 
 # Postal address (add as many lines as necessary)
 address:
