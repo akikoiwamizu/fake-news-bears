@@ -6,7 +6,7 @@ if(empty($_POST['name'])  		||
    empty($_POST['message'])	||
    !filter_var($_POST['email'],FILTER_VALIDATE_EMAIL))
    {
-	echo "No arguments Provided!";
+	echo "No arguments provided!";
 	return false;
    }
 
@@ -19,7 +19,7 @@ $message = $_POST['message'];
 $to = 'aiwamizu@berkeley.edu'; // This is where the form will send a message to.
 $email_subject = "Capstone Contact Form: $name";
 $email_body = "You have received a new message from your website contact form.\n\n"."Here are the details:\n\nName: $name\n\nEmail: $email_address\n\nPhone: $phone\n\nMessage:\n$message";
-$headers = "From: aiwamizu@berkeley.edu\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
+$headers = "From: noreply@ischool.berkeley.edu\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
 $headers .= "Reply-To: $email_address";
 mail($to,$email_subject,$email_body,$headers);
 return true;
