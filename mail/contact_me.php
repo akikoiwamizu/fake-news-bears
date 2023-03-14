@@ -17,16 +17,10 @@ $message = $_POST['message'];
 
 // Create the email and send the message
 $to = "aiwamizu@berkeley.edu"; // This is where the form will send a message to.
-$email_subject = "Capstone Contact Form: $name";
+$email_subject = "Website Contact Form: $name";
 $email_body = "You have received a new message from your website contact form.\n\n"."Here are the details:\n\nName: $name\n\nEmail: $email_address\n\nPhone: $phone\n\nMessage:\n$message";
-$headers = "From: aiwamizu@berkeley.edu\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
+$headers = "From: noreply@yourdomain.com\n"; // This is the email address the generated message will be from.
 $headers .= "Reply-To: $email_address";
-//mail($to, $email_subject, $email_body, $headers);
-//return true;
-if( mail($email_to, $email_subject, $email_message, $headers) !== true )
-    {
-        die('Failed to send');
-    }
-        die('Success');
-    }
+mail($to, $email_subject, $email_body, $headers);
+return true;
 ?>
