@@ -8,9 +8,8 @@
 * Razal Minhas
 * Rohin Chabra
 
----
 
-#### Overview
+## Overview
 
 The goal of this UC Berkeley MIDS Capstone is to build tech to help educated social media users about their exposure to and engagement with disinformation online.
 
@@ -19,5 +18,3 @@ Our goal is to reduce the spread of disinformation, and to accomplish this, we s
 The MVP is built using US politician Twitter data, but we hope to connect with privacy experts and investors to take our product to the next level so we can provide these features to Twitter users worldwide.
 
 [Visit our website to learn more.](https://www.fakenewsbears.org/)
-
----
