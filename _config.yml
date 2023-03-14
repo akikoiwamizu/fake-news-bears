@@ -13,18 +13,18 @@ people:
   pic: 1
   position: SME & App Development
   social:
-    - title: gmail
-      url: #mailto:{{akikoiwamizu@gmail.com}}
+    - title: google-plus
+      url: mailto:{{aiwamizu@berkeley.edu}}
     - title: github
-      url: #https://github.com/akikoiwamizu/
+      url: https://github.com/akikoiwamizu/
     - title: linkedin
-      url: #https://www.linkedin.com/in/akikoiwamizu/
+      url: https://www.linkedin.com/in/akikoiwamizu/
 
 - name: Brook Bi
   pic: 2
   position: Project Management
   social:
-    - title: email
+    - title: google-plus
       url: #
     - title: github
       url: #
@@ -35,7 +35,7 @@ people:
   pic: 3
   position: Exploratory Data Analysis
   social:
-    - title: email
+    - title: google-plus
       url: #
     - title: github
       url: #
@@ -46,7 +46,7 @@ people:
   pic: 4
   position: Product Management
   social:
-    - title: email
+    - title: google-plus
       url: #
     - title: github
       url: #
@@ -57,7 +57,7 @@ people:
   pic: 5
   position: ML Engineering
   social:
-    - title: email
+    - title: google-plus
       url: #
     - title: github
       url: #
@@ -68,7 +68,7 @@ people:
   pic: 6
   position: Data Engineering
   social:
-    - title: email
+    - title: google-plus
       url: #
     - title: github
       url: #
