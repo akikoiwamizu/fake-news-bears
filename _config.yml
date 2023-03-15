@@ -25,40 +25,40 @@ people:
   position: Project Management
   social:
     - title: google-plus
-      url: #
+      url: mailto:brook.bi@berkeley.edu
     - title: github
-      url: #
+      url: https://github.com/brookbi
     - title: linkedin
-      url: #
+      url: https://www.linkedin.com/in/brook-bi/
 
 - name: Giorgio Soggiu
   pic: 3
   position: Exploratory Data Analysis
   social:
     - title: google-plus
-      url: #
+      url: mailto:soggiugiorgio@berkeley.edu
     - title: github
-      url: #
+      url: https://soggiugiorgio.github.io/
     - title: linkedin
-      url: #
+      url: https://www.linkedin.com/in/giorgio-soggiu/
 
 - name: Jason Yang
   pic: 4
   position: Product Management
   social:
     - title: google-plus
-      url: #
+      url: mailto:chiaojyang@berkeley.edu
     - title: github
-      url: #
+      url: https://github.com/jasonwithcoffee
     - title: linkedin
-      url: #
+      url: https://www.linkedin.com/in/jasonwithcoffee/
 
 - name: Razal Minhas
   pic: 5
   position: ML Engineering
   social:
     - title: google-plus
-      url: #
+      url: mailto:razal@berkeley.edu
     - title: github
       url: #
     - title: linkedin
@@ -69,11 +69,11 @@ people:
   position: Data Engineering
   social:
     - title: google-plus
-      url: #
+      url: mailto:rchabra@berkeley.edu
     - title: github
-      url: #
+      url: https://github.com/rchabra
     - title: linkedin
-      url: #
+      url: https://www.linkedin.com/in/rohin-chabra-11800368/
 
 # Build settings
 markdown: kramdown
