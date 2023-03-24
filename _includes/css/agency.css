@@ -787,7 +787,7 @@ ul.social-buttons li a:active {
 }
 
 .video-responsive iframe{
-    left:10%;
+    left:0;
     top:0;
     height:100%;
     width:100%;
