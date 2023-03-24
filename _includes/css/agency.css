@@ -801,24 +801,18 @@ input {
 }
 
 a {
-    color: #f96332;
+    color: #FFD137;
 }
 
 a:hover,
 a:focus {
-    color: #f96332;
+    color: #FFD137;
 }
 
 p {
     line-height: 1.61em;
     font-weight: 300;
     font-size: 1.2em;
-}
-
-.category {
-    text-transform: capitalize;
-    font-weight: 700;
-    color: #9A9A9A;
 }
 
 body {
