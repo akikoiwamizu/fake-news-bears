@@ -879,6 +879,15 @@ $tab-wrap-border-radius: 6px;
   }
 }
 
+.container {
+  margin: 0 auto;
+  display: block;
+  max-width: 800px;
+  > *:not(.tab-wrap) {
+    padding: 0 80px;
+  }
+}
+
 ::-moz-selection {
     text-shadow: none;
     background: #{{ site.data.template.color.primary }};
