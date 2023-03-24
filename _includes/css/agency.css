@@ -1056,21 +1056,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-@media screen and (max-width: 768px) {
-
-    .nav-tabs {
-        display: inline-block;
-        width: 100%;
-        padding-left: 100px;
-        padding-right: 100px;
-        text-align: center;
-    }
-
-    .nav-tabs .nav-item>.nav-link {
-        margin-bottom: 5px;
-    }
-}
 /* Responsive tabs END */
 
 ::-moz-selection {
