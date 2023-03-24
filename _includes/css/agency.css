@@ -801,17 +801,24 @@ input {
 }
 
 a {
-    color: #F8B311;
+    color: #f96332;
 }
+
 a:hover,
 a:focus {
-    color: #F8B311;
+    color: #f96332;
 }
 
 p {
     line-height: 1.61em;
     font-weight: 300;
     font-size: 1.2em;
+}
+
+.category {
+    text-transform: capitalize;
+    font-weight: 700;
+    color: #9A9A9A;
 }
 
 body {
@@ -855,6 +862,17 @@ body {
     transform: rotate(180deg);
 }
 
+
+.now-ui-icons {
+    display: inline-block;
+    font: normal normal normal 14px/1 'Nucleo Outline';
+    font-size: inherit;
+    speak: none;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 @-webkit-keyframes nc-icon-spin {
     0% {
         -webkit-transform: rotate(0deg);
@@ -893,6 +911,22 @@ body {
     }
 }
 
+.now-ui-icons.objects_umbrella-13:before {
+    content: "\ea5f";
+}
+
+.now-ui-icons.shopping_cart-simple:before {
+    content: "\ea1d";
+}
+
+.now-ui-icons.shopping_shop:before {
+    content: "\ea50";
+}
+
+.now-ui-icons.ui-2_settings-90:before {
+    content: "\ea4b";
+}
+
 .nav-tabs {
     border: 0;
     padding: 15px 0.7rem;
@@ -920,13 +954,20 @@ body {
 }
 
 .nav-tabs>.nav-item>.nav-link:hover {
-    background-color: #FFD137;
+    background-color: transparent;
 }
 
 .nav-tabs>.nav-item>.nav-link.active {
     background-color: #444;
     border-radius: 30px;
     color: #FFFFFF;
+}
+
+.nav-tabs>.nav-item>.nav-link i.now-ui-icons {
+    font-size: 14px;
+    position: relative;
+    top: 1px;
+    margin-right: 3px;
 }
 
 .nav-tabs.nav-tabs-neutral>.nav-item>.nav-link {
@@ -956,16 +997,16 @@ body {
     padding: 0;
 }
 
-.card[data-background-color="yellow"] {
-    background-color: #F8B311;
-}
-
 .card[data-background-color="orange"] {
     background-color: #f96332;
 }
 
 .card[data-background-color="red"] {
     background-color: #FF3636;
+}
+
+.card[data-background-color="yellow"] {
+    background-color: #F8B311;
 }
 
 .card[data-background-color="blue"] {
@@ -1004,6 +1045,7 @@ body {
     color: #FFFFFF;
 }
 
+
 @font-face {
   font-family: 'Nucleo Outline';
   src: url("https://github.com/creativetimofficial/now-ui-kit/blob/master/assets/fonts/nucleo-outline.eot");
@@ -1039,7 +1081,6 @@ body {
         margin-bottom: 5px;
     }
 }
-
 /* Responsive tabs END */
 
 ::-moz-selection {
