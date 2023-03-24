@@ -794,11 +794,9 @@ ul.social-buttons li a:active {
     position:absolute;
 }
 
-$max-tab-count: 5;
-$tab-wrap-border-radius: 6px;
 .tab-wrap {
   transition: 0.3s box-shadow ease;
-  border-radius: $tab-wrap-border-radius;
+  border-radius: 6px;
   max-width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -814,7 +812,7 @@ $tab-wrap-border-radius: 6px;
 
 .tab {
   display: none;
-  @for $i from 1 through $max-tab-count {
+  @for $i from 1 through 5 {
     &:checked:nth-of-type(#{$i}) ~ .tab__content:nth-of-type(#{$i}) {
       opacity: 1;
       transition: 0.5s opacity ease-in, 0.8s transform ease;
@@ -847,7 +845,7 @@ $tab-wrap-border-radius: 6px;
   }
   + label {
     box-shadow: 0 -1px 0 #eee inset;
-    border-radius: $tab-wrap-border-radius $tab-wrap-border-radius 0 0;
+    border-radius: 6px 6px 0 0;
     cursor: pointer;
     display: block;
     text-decoration: none;
@@ -875,16 +873,7 @@ $tab-wrap-border-radius: 6px;
     opacity: 0;
     left: 0;
     transform: translateY(-3px);
-    border-radius: $tab-wrap-border-radius;
-  }
-}
-
-.container {
-  margin: 0 auto;
-  display: block;
-  max-width: 800px;
-  > *:not(.tab-wrap) {
-    padding: 0 80px;
+    border-radius: 6px;
   }
 }
 
