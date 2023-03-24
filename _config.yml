@@ -6,7 +6,6 @@ title: Fake News Bears
 email: aiwamizu@berkeley.edu
 description: "Repository for UC Berkeley MIDS Capstone Project (Spring 2023) for team Fake News Bears looking at US politician Twitter data to assess the spread of and exposure to disinformation online."
 
-
 # Team names, titles and social links
 people:
 - name: Akiko Iwamizu
@@ -74,6 +73,11 @@ people:
       url: https://github.com/rchabra
     - title: linkedin
       url: https://www.linkedin.com/in/rohin-chabra-11800368/
+
+# Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
+social:
+  - title: github
+    url: https://github.com/akikoiwamizu/fake-news-bears/
 
 # Build settings
 markdown: kramdown
