@@ -954,7 +954,7 @@ body {
 }
 
 .nav-tabs>.nav-item>.nav-link:hover {
-    background-color: transparent;
+    background-color: #FFD137;
 }
 
 .nav-tabs>.nav-item>.nav-link.active {
@@ -1006,7 +1006,7 @@ body {
 }
 
 .card[data-background-color="yellow"] {
-    background-color: #F8B311;
+    background-color: #FFB236;
 }
 
 .card[data-background-color="blue"] {
@@ -1017,12 +1017,12 @@ body {
     background-color: #15b60d;
 }
 
-[data-background-color="yellow"] {
-    background-color: #F8B311;
-}
-
 [data-background-color="orange"] {
     background-color: #e95e38;
+}
+
+[data-background-color="yellow"] {
+    background-color: #FFB236;
 }
 
 [data-background-color="black"] {
