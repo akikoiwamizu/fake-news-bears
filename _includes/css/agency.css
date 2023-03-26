@@ -21,6 +21,7 @@ body {
 p {
     font-size: 14px;
     line-height: 1.75;
+    padding: 1.0em;
 }
 
 p.large {
@@ -857,71 +858,6 @@ body {
     transform: rotate(180deg);
 }
 
-
-.now-ui-icons {
-    display: inline-block;
-    font: normal normal normal 14px/1 'Nucleo Outline';
-    font-size: inherit;
-    speak: none;
-    text-transform: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-@-webkit-keyframes nc-icon-spin {
-    0% {
-        -webkit-transform: rotate(0deg);
-    }
-
-    100% {
-        -webkit-transform: rotate(360deg);
-    }
-}
-
-@-moz-keyframes nc-icon-spin {
-    0% {
-        -moz-transform: rotate(0deg);
-    }
-
-    100% {
-        -moz-transform: rotate(360deg);
-    }
-}
-
-@keyframes nc-icon-spin {
-    0% {
-        -webkit-transform: rotate(0deg);
-        -moz-transform: rotate(0deg);
-        -ms-transform: rotate(0deg);
-        -o-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-
-    100% {
-        -webkit-transform: rotate(360deg);
-        -moz-transform: rotate(360deg);
-        -ms-transform: rotate(360deg);
-        -o-transform: rotate(360deg);
-        transform: rotate(360deg);
-    }
-}
-
-.now-ui-icons.objects_umbrella-13:before {
-    content: "\ea5f";
-}
-
-.now-ui-icons.shopping_cart-simple:before {
-    content: "\ea1d";
-}
-
-.now-ui-icons.shopping_shop:before {
-    content: "\ea50";
-}
-
-.now-ui-icons.ui-2_settings-90:before {
-    content: "\ea4b";
-}
-
 .nav-tabs {
     border: 0;
     padding: 15px 0.7rem;
@@ -937,7 +873,7 @@ body {
 }
 
 .nav-tabs>.nav-item>.nav-link {
-    color: #888888;
+    color: #FFD137;
     margin: 0;
     margin-right: 5px;
     background-color: transparent;
@@ -956,13 +892,6 @@ body {
     background-color: #444;
     border-radius: 30px;
     color: #FFFFFF;
-}
-
-.nav-tabs>.nav-item>.nav-link i.now-ui-icons {
-    font-size: 14px;
-    position: relative;
-    top: 1px;
-    margin-right: 3px;
 }
 
 .nav-tabs.nav-tabs-neutral>.nav-item>.nav-link {
@@ -992,54 +921,25 @@ body {
     padding: 0;
 }
 
-.card[data-background-color="orange"] {
-    background-color: #f96332;
-}
-
-.card[data-background-color="red"] {
-    background-color: #FF3636;
-}
-
 .card[data-background-color="yellow"] {
     background-color: #FFB236;
-}
-
-.card[data-background-color="blue"] {
-    background-color: #2CA8FF;
-}
-
-.card[data-background-color="green"] {
-    background-color: #15b60d;
-}
-
-[data-background-color="orange"] {
-    background-color: #e95e38;
 }
 
 [data-background-color="yellow"] {
     background-color: #FFB236;
 }
 
-[data-background-color="black"] {
-    background-color: #2c2c2c;
+[data-background-color]:not([data-background-color="yellow"]) {
+    color: #F8B311;
 }
 
-[data-background-color]:not([data-background-color="gray"]) {
+[data-background-color]:not([data-background-color="yellow"]) p {
     color: #FFFFFF;
 }
 
-[data-background-color]:not([data-background-color="gray"]) p {
-    color: #FFFFFF;
+[data-background-color]:not([data-background-color="yellow"]) a:not(.btn):not(.dropdown-item) {
+    color: #F8B311;
 }
-
-[data-background-color]:not([data-background-color="gray"]) a:not(.btn):not(.dropdown-item) {
-    color: #FFFFFF;
-}
-
-[data-background-color]:not([data-background-color="gray"]) .nav-tabs>.nav-item>.nav-link i.now-ui-icons {
-    color: #FFFFFF;
-}
-
 
 @font-face {
   font-family: 'Nucleo Outline';
@@ -1049,17 +949,6 @@ body {
   font-weight: normal;
   font-style: normal;
 
-}
-
-.now-ui-icons {
-  display: inline-block;
-  font: normal normal normal 14px/1 'Nucleo Outline';
-  font-size: inherit;
-  speak: none;
-  text-transform: none;
-  /* Better Font Rendering */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 @media screen and (max-width: 768px) {
