@@ -827,17 +827,13 @@ ul.social-buttons li a:active {
   padding: 10px;
 }
 
-#product .nav-tabs:not(.nav-tabs-neutral) > .nav-item > .nav-link.active {
-  box-shadow: 0px 5px 35px 0px rgba(0, 0, 0, 0.3);
-}
-
 #product .card .nav-tabs {
   border-top-right-radius: 0.1875rem;
   border-top-left-radius: 0.1875rem;
 }
 
-#product .nav-tabs>.nav-item>.nav-link {
-    color: #888888;
+#product .nav-tabs > .nav-item > .nav-link {
+    color: #ffffff;
     margin: 0;
     margin-right: 5px;
     background-color: transparent;
@@ -852,12 +848,13 @@ ul.social-buttons li a:active {
   background-color: #ffd137;
 }
 
-#product .nav-tabs.nav-tabs-neutral > .nav-item > .nav-link {
+#product .nav-tabs > .nav-item > .nav-link {
   color: #ffffff;
 }
 
-#product .nav-tabs.nav-tabs-neutral > .nav-item > .nav-link.active {
+#product .nav-tabs > .nav-item.active {
   background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
   color: #ffffff;
 }
 
