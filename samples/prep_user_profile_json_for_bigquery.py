@@ -1,8 +1,14 @@
 import json
 
+# strict JSON formatted file
+INPUT_JSON = "samples/json_users_out/clean_twitter_user_profiles.json"
+
+# BigQuery friendly JSON file
+OUTPUT_JSON = "samples/json_users_out/usa_congress_twitter_users.json"
+
 # load file as JSON object for cleanup
 json_obj = None
-with open("samples/json_users_out/clean_twitter_user_profiles.json", "r") as infile:
+with open(INPUT_JSON, "r") as infile:
     json_obj = json.load(infile)
 
 print(f"type json object: {type(json_obj)}")
@@ -18,7 +24,6 @@ print(f"top list first element type: {type(top_list[0])}")
 final_list = []
 # go through list of dict (data-error pairs) items
 for i in range(0, len(top_list)):
-
     list_dict = top_list[i]
     print(f"top list[{i}] is dict, with keys: {list_dict.keys()}")
 
@@ -33,8 +38,7 @@ for i in range(0, len(top_list)):
 
 # save list to json file
 print(f"final_list length: {len(final_list)}")
-with open("samples/json_users_out/usa_congress_twitter_users.json", "w") as outfile:
-
+with open(OUTPUT_JSON, "w") as outfile:
     for i in range(0, len(final_list)):
         s = json.dumps(final_list[i])
 
