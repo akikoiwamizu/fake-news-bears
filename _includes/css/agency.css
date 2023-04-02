@@ -14,6 +14,10 @@ body {
     color: #{{ site.data.template.color.muted }};
 }
 
+.text-dark {
+    color: #{{ site.data.template.color.secondary-dark }};
+}
+
 .text-primary {
     color: #{{ site.data.template.color.primary }};
 }
@@ -64,6 +68,10 @@ h6 {
 
 .bg-light-gray {
     background-color: #f7f7f7;
+}
+
+.bg-medium-gray {
+    background-color: #2B2B2B;
 }
 
 .bg-darkest-gray {
