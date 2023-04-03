@@ -804,7 +804,7 @@ ul.social-buttons li a:active {
     position:absolute;
 }
 
-/* Responsive tabs START */
+/* Product Responsive tabs START */
 
 #product .nav-item .nav-link,
 .nav-tabs .nav-link {
@@ -904,6 +904,117 @@ ul.social-buttons li a:active {
     }
 
     #product .nav-tabs .nav-item>.nav-link {
+        margin-bottom: 5px;
+    }
+}
+
+/* Responsive tabs END */
+
+
+/* Ethics Responsive tabs START */
+
+#ethics .nav-item .nav-link,
+.nav-tabs .nav-link {
+  -webkit-transition: all 300ms ease 0s;
+  -moz-transition: all 300ms ease 0s;
+  -o-transition: all 300ms ease 0s;
+  -ms-transition: all 300ms ease 0s;
+  transition: all 300ms ease 0s;
+}
+
+#ethics .card a {
+  -webkit-transition: all 150ms ease 0s;
+  -moz-transition: all 150ms ease 0s;
+  -o-transition: all 150ms ease 0s;
+  -ms-transition: all 150ms ease 0s;
+  transition: all 150ms ease 0s;
+}
+
+#ethics .nav-tabs {
+  border: 0;
+  padding: 15px 0.7rem;
+}
+
+#ethics .tab-pane > a img {
+  width: 800px;
+}
+
+#ethics .tab-pane {
+  padding: 10px;
+}
+
+#ethics .card .nav-tabs {
+  border-top-right-radius: 0.1875rem;
+  border-top-left-radius: 0.1875rem;
+}
+
+#ethics .nav-tabs > .nav-item > .nav-link {
+    color: #ffffff;
+    margin: 0;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 30px;
+    font-size: 14px;
+    padding: 11px 23px;
+    line-height: 1.5;
+}
+
+#ethics .nav-tabs > .nav-item > .nav-link:hover {
+  background-color: #ffd137;
+}
+
+#ethics .nav-tabs > .nav-item > .nav-link {
+  color: #ffffff;
+}
+
+#ethics .tab-content {
+  color: #{{ site.data.template.color.primary }};
+}
+
+#ethics .nav-tabs > .nav-item.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  color: #ffffff;
+}
+
+#ethics .card {
+  border: 0;
+  border-radius: 0.1875rem;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-bottom: 30px;
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+}
+
+#ethics .card .card-header {
+  background-color: transparent;
+  border-bottom: 0;
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0;
+}
+
+#ethics .card[data-background-color="yellow"] {
+  background-color: #f8b311;
+}
+
+#ethics [data-background-color="yellow"] {
+  background-color: #f8b311;
+}
+
+/* CSS make nav tab bar responsive in mobile */
+@media screen and (max-width: 768px) {
+
+    #ethics .nav-tabs {
+        display: inline-block;
+        width: 100%;
+        padding-left: 100px;
+        padding-right: 100px;
+        text-align: center;
+    }
+
+    #ethics .nav-tabs .nav-item>.nav-link {
         margin-bottom: 5px;
     }
 }
