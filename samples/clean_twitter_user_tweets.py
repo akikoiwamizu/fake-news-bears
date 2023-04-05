@@ -22,6 +22,8 @@ print(f"encoding is: {encoding}")
 # create sub directory "json_clean_tweets"
 OUT_DIR = os.getcwd() + "/samples/json_clean_tweets"
 OUT_FILE = OUT_DIR + "/usa_congress_tweets.json"
+
+# batch size to combine
 FILES_TO_COMBINE = 500
 
 IN_DIR = os.getcwd() + "/samples/json_tweets_out"
@@ -48,9 +50,7 @@ print(
 # such as backslashed quotes e.g. replace \" with just "
 # write nice BigQuery friendly JSON
 def clean_tweets_write_json(IN_FILE, outfile):
-
     with open(IN_FILE, "r") as infile:
-
         print(f"Opened file: {IN_FILE}")
         for line in infile:
             # replace all instances of \" with instances of "
@@ -84,7 +84,6 @@ if os.path.exists(OUT_DIR) == False:
 
 # open file in write mode and overwrite since this is our first time
 with open(OUT_FILE, "w") as outfile:
-
     for i in range(0, num_batches):
         print(f"processing batch# {i}")
 
@@ -93,13 +92,11 @@ with open(OUT_FILE, "w") as outfile:
         end_idx = start_idx + FILES_TO_COMBINE
 
         for j in range(start_idx, end_idx):
-
             # overwrite the file if this is the first time we are opening it
 
             clean_tweets_write_json(IN_DIR + "/" + file_names[j], outfile)
 
     if stragglers > 0:
-
         start_idx = FILES_TO_COMBINE * num_batches
         end_idx = len(file_names)
 
