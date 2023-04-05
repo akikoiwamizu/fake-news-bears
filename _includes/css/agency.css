@@ -968,7 +968,7 @@ ul.social-buttons li a:active {
 }
 
 #ethics .tab-content {
-  color: #{{ site.data.template.color.primary }};
+  color: #{{ site.data.template.color.muted }};
 }
 
 #ethics .nav-tabs > .nav-item.active {
@@ -980,6 +980,7 @@ ul.social-buttons li a:active {
 #ethics .card {
   border: 0;
   border-radius: 0.1875rem;
+  background-color: #fff;
   display: inline-block;
   position: relative;
   width: 100%;
