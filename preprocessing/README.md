@@ -1,40 +1,7 @@
-# Fake News Bears
-
-#### Authors
-* Akiko Iwamizu
-* Brook Bi
-* Giorgio Soggiu
-* Jason Yang
-* Razal Minhas
-* Rohin Chabra
-
-
-## Overview
-
-The goal of this UC Berkeley MIDS Capstone is to build tech to help educated social media users about their exposure to and engagement with disinformation online.
-
-Our goal is to reduce the spread of disinformation, and to accomplish this, we score users based on a series of dimensions calculated from their Twitter content. We then provide the user their top three tweets that contributed to their disinformation score. What's unique about our approach is that we segment Twitter users at an individual-level and customize the education information users receive on our platform.
-
-The MVP is built using US politician Twitter data, but we hope to connect with privacy experts and investors to take our product to the next level so we can provide these features to Twitter users worldwide.
-
-[Visit our website to learn more.](https://www.fakenewsbears.org/)
-
-
-## Data Processing
+# Data Processing
 This section describes how to execute python code to process data.
 
-***
-## Dataset: Politicians Last 100 Tweets from Twitter APIs
-***
-
-### Raw files
-The raw files are:
-
-### Process raw files
-The following commands process the files
-
-### Output
-The files output are
+<br/>
 
 ***
 ## Dataset: Politicians Tweet Data (2022 and 2023)
@@ -45,10 +12,11 @@ The files output are
 ](samples/us_politicians_twitter_2023/us_house_posts_2022_2023.csv)
 - [US Senate Tweets from 2022 to 2023](samples/us_politicians_twitter_2023/us_senate_posts_2022_2023.csv)
 
+
 ### Process raw files
 Execute the following code which will convert the raw files (listed above) into JSON files that are required by BigQuery for ingestion
 ```sh
-cd fake-news-bears\samples
+cd fake-news-bears/samples
 ./02_twitter_politicians.py
 ```
 
