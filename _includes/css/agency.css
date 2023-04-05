@@ -14,6 +14,10 @@ body {
     color: #{{ site.data.template.color.muted }};
 }
 
+.text-dark {
+    color: #{{ site.data.template.color.secondary-dark }};
+}
+
 .text-primary {
     color: #{{ site.data.template.color.primary }};
 }
@@ -21,6 +25,7 @@ body {
 p {
     font-size: 14px;
     line-height: 1.75;
+    padding: 1.0em;
 }
 
 p.large {
@@ -65,8 +70,16 @@ h6 {
     background-color: #f7f7f7;
 }
 
+.bg-medium-gray {
+    background-color: #2B2B2B;
+}
+
 .bg-darkest-gray {
     background-color: #222;
+}
+
+.bg-accent-yellow {
+    background-color: #ffd137;
 }
 
 .btn-primary {
@@ -180,6 +193,17 @@ fieldset[disabled] .btn-xl.active {
     color: #{{ site.data.template.color.primary }};
 }
 
+/* Make logo resize and fit navbar height */
+.navbar-default .navbar-brand > img {
+    object-fit: contain;
+    max-height: 100%;
+}
+
+.navbar-default .navbar-brand {
+    padding: 0px;
+    height: auto;
+}
+
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus,
 .navbar-default .navbar-brand:active,
@@ -206,6 +230,7 @@ fieldset[disabled] .btn-xl.active {
 }
 
 .navbar-default .nav li a {
+    /** padding-top: 30px; **/
     text-transform: uppercase;
     font-family: {{ site.data.template.font.primary }};
     font-weight: 400;
@@ -236,19 +261,12 @@ fieldset[disabled] .btn-xl.active {
 
 @media(min-width:768px) {
     .navbar-default {
-        padding: 25px 0;
+        padding: 10px 0;
         border: 0;
-        background-color: transparent;
+        background-color: #222;
         -webkit-transition: padding .3s;
         -moz-transition: padding .3s;
         transition: padding .3s;
-    }
-
-    .navbar-default .navbar-brand {
-        font-size: 2em;
-        -webkit-transition: all .3s;
-        -moz-transition: all .3s;
-        transition: all .3s;
     }
 
     .navbar-default .navbar-nav>.active>a {
@@ -259,17 +277,13 @@ fieldset[disabled] .btn-xl.active {
         padding: 10px 0;
         background-color: #222;
     }
-
-    .navbar-default.navbar-shrink .navbar-brand {
-        font-size: 1.5em;
-    }
 }
 
 header {
     text-align: center;
     color: #fff;
     background-attachment: scroll;
-    background-image: url('{{ site.baseurl }}/img/header-bg.jpg');
+    background-image: url('{{ site.baseurl }}/img/campus-header-bg.jpg');
     background-position: center center;
     background-repeat: none;
     -webkit-background-size: cover;
@@ -354,19 +368,19 @@ section h3.section-subheading {
     text-transform: none;
 }
 
-#portfolio .portfolio-item {
+#models .portfolio-item {
     right: 0;
     margin: 0 0 15px;
 }
 
-#portfolio .portfolio-item .portfolio-link {
+#models .portfolio-item .portfolio-link {
     display: block;
     position: relative;
     margin: 0 auto;
     max-width: 400px;
 }
 
-#portfolio .portfolio-item .portfolio-link .portfolio-hover {
+#models .portfolio-item .portfolio-link .portfolio-hover {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -378,11 +392,11 @@ section h3.section-subheading {
     background: rgba({{ site.data.template.color.primary | hex_to_rgb | join: ',' }}, .9);
 }
 
-#portfolio .portfolio-item .portfolio-link .portfolio-hover:hover {
+#models .portfolio-item .portfolio-link .portfolio-hover:hover {
     opacity: 1;
 }
 
-#portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content {
+#models .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content {
     position: absolute;
     top: 50%;
     width: 100%;
@@ -393,16 +407,16 @@ section h3.section-subheading {
     color: #fff;
 }
 
-#portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content i {
+#models .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content i {
     margin-top: -12px;
 }
 
-#portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h3,
-#portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h4 {
+#models .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h3,
+#models .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h4 {
     margin: 0;
 }
 
-#portfolio .portfolio-item .portfolio-caption {
+#models .portfolio-item .portfolio-caption {
     margin: 0 auto;
     padding: 25px;
     max-width: 400px;
@@ -410,24 +424,24 @@ section h3.section-subheading {
     background-color: #fff;
 }
 
-#portfolio .portfolio-item .portfolio-caption h4 {
+#models .portfolio-item .portfolio-caption h4 {
     margin: 0;
     text-transform: none;
 }
 
-#portfolio .portfolio-item .portfolio-caption p {
+#models .portfolio-item .portfolio-caption p {
     margin: 0;
     font-family: {{ site.data.template.font.secondary }};
     font-size: 16px;
     font-style: italic;
 }
 
-#portfolio * {
+#models * {
     z-index: 2;
 }
 
 @media(min-width:767px) {
-    #portfolio .portfolio-item {
+    #models .portfolio-item {
         margin: 0 0 30px;
     }
 }
@@ -652,75 +666,6 @@ section h3.section-subheading {
     margin-top: 0;
 }
 
-aside.clients img {
-    margin: 50px auto;
-}
-
-section#contact {
-    background-color: #222;
-    background-image: url('{{ site.baseurl }}/img/map-image.png');
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-section#contact .section-heading {
-    color: #fff;
-}
-
-section#contact .form-group {
-    margin-bottom: 25px;
-}
-
-section#contact .form-group input,
-section#contact .form-group textarea {
-    padding: 20px;
-}
-
-section#contact .form-group input.form-control {
-    height: auto;
-}
-
-section#contact .form-group textarea.form-control {
-    height: 236px;
-}
-
-section#contact .form-control:focus {
-    border-color: #{{ site.data.template.color.primary }};
-    box-shadow: none;
-}
-
-section#contact::-webkit-input-placeholder {
-    text-transform: uppercase;
-    font-family: {{ site.data.template.font.primary }};
-    font-weight: 700;
-    color: #bbb;
-}
-
-section#contact:-moz-placeholder {
-    text-transform: uppercase;
-    font-family: {{ site.data.template.font.primary }};
-    font-weight: 700;
-    color: #bbb;
-}
-
-section#contact::-moz-placeholder {
-    text-transform: uppercase;
-    font-family: {{ site.data.template.font.primary }};
-    font-weight: 700;
-    color: #bbb;
-}
-
-section#contact:-ms-input-placeholder {
-    text-transform: uppercase;
-    font-family: {{ site.data.template.font.primary }};
-    font-weight: 700;
-    color: #bbb;
-}
-
-section#contact .text-danger {
-    color: #e74c3c;
-}
-
 footer {
     padding: 25px 0;
     text-align: center;
@@ -843,6 +788,238 @@ ul.social-buttons li a:active {
     -ms-transform: rotate(90deg);
     transform: rotate(90deg);
 }
+
+.video-responsive{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+}
+
+.video-responsive iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+
+/* Product Responsive tabs START */
+
+#product .nav-item .nav-link,
+.nav-tabs .nav-link {
+  -webkit-transition: all 300ms ease 0s;
+  -moz-transition: all 300ms ease 0s;
+  -o-transition: all 300ms ease 0s;
+  -ms-transition: all 300ms ease 0s;
+  transition: all 300ms ease 0s;
+}
+
+#product .card a {
+  -webkit-transition: all 150ms ease 0s;
+  -moz-transition: all 150ms ease 0s;
+  -o-transition: all 150ms ease 0s;
+  -ms-transition: all 150ms ease 0s;
+  transition: all 150ms ease 0s;
+}
+
+#product .nav-tabs {
+  border: 0;
+  padding: 15px 0.7rem;
+}
+
+#product .tab-pane > a img {
+  width: 800px;
+}
+
+#product .tab-pane {
+  padding: 10px;
+}
+
+#product .card .nav-tabs {
+  border-top-right-radius: 0.1875rem;
+  border-top-left-radius: 0.1875rem;
+}
+
+#product .nav-tabs > .nav-item > .nav-link {
+    color: #ffffff;
+    margin: 0;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 30px;
+    font-size: 14px;
+    padding: 11px 23px;
+    line-height: 1.5;
+}
+
+#product .nav-tabs > .nav-item > .nav-link:hover {
+  background-color: #ffd137;
+}
+
+#product .nav-tabs > .nav-item > .nav-link {
+  color: #ffffff;
+}
+
+#product .nav-tabs > .nav-item.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  color: #ffffff;
+}
+
+#product .card {
+  border: 0;
+  border-radius: 0.1875rem;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-bottom: 30px;
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+}
+
+#product .card .card-header {
+  background-color: transparent;
+  border-bottom: 0;
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0;
+}
+
+#product .card[data-background-color="yellow"] {
+  background-color: #f8b311;
+}
+
+#product [data-background-color="yellow"] {
+  background-color: #f8b311;
+}
+
+/* CSS make nav tab bar responsive in mobile */
+@media screen and (max-width: 768px) {
+
+    #product .nav-tabs {
+        display: inline-block;
+        width: 100%;
+        padding-left: 100px;
+        padding-right: 100px;
+        text-align: center;
+    }
+
+    #product .nav-tabs .nav-item>.nav-link {
+        margin-bottom: 5px;
+    }
+}
+
+/* Responsive tabs END */
+
+
+/* Ethics Responsive tabs START */
+
+#ethics .nav-item .nav-link,
+.nav-tabs .nav-link {
+  -webkit-transition: all 300ms ease 0s;
+  -moz-transition: all 300ms ease 0s;
+  -o-transition: all 300ms ease 0s;
+  -ms-transition: all 300ms ease 0s;
+  transition: all 300ms ease 0s;
+}
+
+#ethics .card a {
+  -webkit-transition: all 150ms ease 0s;
+  -moz-transition: all 150ms ease 0s;
+  -o-transition: all 150ms ease 0s;
+  -ms-transition: all 150ms ease 0s;
+  transition: all 150ms ease 0s;
+}
+
+#ethics .nav-tabs {
+  border: 0;
+  padding: 15px 0.7rem;
+}
+
+#ethics .tab-pane > a img {
+  width: 800px;
+}
+
+#ethics .tab-pane {
+  padding: 10px;
+}
+
+#ethics .card .nav-tabs {
+  border-top-right-radius: 0.1875rem;
+  border-top-left-radius: 0.1875rem;
+}
+
+#ethics .nav-tabs > .nav-item > .nav-link {
+    color: #ffffff;
+    margin: 0;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 30px;
+    font-size: 14px;
+    padding: 11px 23px;
+    line-height: 1.5;
+}
+
+#ethics .nav-tabs > .nav-item > .nav-link:hover {
+  background-color: #ffd137;
+}
+
+#ethics .nav-tabs > .nav-item > .nav-link {
+  color: #ffffff;
+}
+
+#ethics .tab-content {
+  color: #{{ site.data.template.color.primary }};
+}
+
+#ethics .nav-tabs > .nav-item.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  color: #ffffff;
+}
+
+#ethics .card {
+  border: 0;
+  border-radius: 0.1875rem;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-bottom: 30px;
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+}
+
+#ethics .card .card-header {
+  background-color: transparent;
+  border-bottom: 0;
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0;
+}
+
+#ethics .card[data-background-color="yellow"] {
+  background-color: #f8b311;
+}
+
+#ethics [data-background-color="yellow"] {
+  background-color: #f8b311;
+}
+
+/* CSS make nav tab bar responsive in mobile */
+@media screen and (max-width: 768px) {
+
+    #ethics .nav-tabs {
+        display: inline-block;
+        width: 100%;
+        padding-left: 100px;
+        padding-right: 100px;
+        text-align: center;
+    }
+
+    #ethics .nav-tabs .nav-item>.nav-link {
+        margin-bottom: 5px;
+    }
+}
+
+/* Responsive tabs END */
 
 ::-moz-selection {
     text-shadow: none;

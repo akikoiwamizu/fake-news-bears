@@ -4,57 +4,80 @@ baseurl:
 # Site settings
 title: Fake News Bears
 email: aiwamizu@berkeley.edu
-description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
-
+description: "Repository for UC Berkeley MIDS Capstone Project (Spring 2023) for team Fake News Bears looking at US politician Twitter data to assess the spread of and exposure to disinformation online."
 
 # Team names, titles and social links
 people:
-- name: Kay Garland
+- name: Akiko Iwamizu
   pic: 1
-  position: Lead Designer
+  position: SME & App Development
   social:
-    - title: twitter
-      url: #
-    - title: facebook
-      url: #
-    - title: stack-overflow
-      url: #
-
-- name: Larry Parker
-  pic: 2
-  position: Lead Marketer
-  social:
-    - title: twitter
-      url: #
-    - title: facebook
-      url: #
-    - title: linkedin
-      url: #
-
-- name: Diana Petersen
-  pic: 3
-  position: Lead Developer
-  social:
-    - title: twitter
-      url: #
-    - title: facebook
-      url: #
     - title: google-plus
-      url: #
+      url: mailto:aiwamizu@berkeley.edu
+    - title: github
+      url: https://github.com/akikoiwamizu/
+    - title: linkedin
+      url: https://www.linkedin.com/in/akikoiwamizu/
+
+- name: Brook Bi
+  pic: 2
+  position: Project Management
+  social:
+    - title: google-plus
+      url: mailto:brook.bi@berkeley.edu
+    - title: github
+      url: https://github.com/brookbi
+    - title: linkedin
+      url: https://www.linkedin.com/in/brook-bi/
+
+- name: Giorgio Soggiu
+  pic: 3
+  position: Exploratory Data Analysis
+  social:
+    - title: google-plus
+      url: mailto:soggiugiorgio@berkeley.edu
+    - title: github
+      url: https://soggiugiorgio.github.io/
+    - title: linkedin
+      url: https://www.linkedin.com/in/giorgio-soggiu/
+
+- name: Jason Yang
+  pic: 4
+  position: Product Management
+  social:
+    - title: google-plus
+      url: mailto:chiaojyang@berkeley.edu
+    - title: github
+      url: https://github.com/jasonwithcoffee
+    - title: linkedin
+      url: https://www.linkedin.com/in/jasonwithcoffee/
+
+- name: Razal Minhas
+  pic: 5
+  position: ML Engineering
+  social:
+    - title: google-plus
+      url: mailto:razal@berkeley.edu
+    - title: github
+      url: https://github.com/razzlemacher
+    - title: linkedin
+      url: https://www.linkedin.com/in/razal-minhas/
+
+- name: Rohin Chabra
+  pic: 6
+  position: Data Engineering
+  social:
+    - title: google-plus
+      url: mailto:rchabra@berkeley.edu
+    - title: github
+      url: https://github.com/rchabra
+    - title: linkedin
+      url: https://www.linkedin.com/in/rohin-chabra-11800368/
 
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 social:
-  - title: twitter
-    url:
-  - title: facebook
-    url:
   - title: github
-    url: https://github.com/akikoiwamizu/fake-news-bears
-
-# Postal address (add as many lines as necessary)
-address:
-  - line: UC Berkeley 110 Sproul Hall
-  - line: Berkeley, CA 94720
+    url: https://github.com/akikoiwamizu/fake-news-bears/
 
 # Build settings
 markdown: kramdown

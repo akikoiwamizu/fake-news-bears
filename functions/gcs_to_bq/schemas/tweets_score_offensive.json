@@ -1,0 +1,20 @@
+[
+{
+     "name": "user_id",
+     "type": "STRING",
+     "mode": "NULLABLE",
+     "description": "Unique Twitter user id"
+},
+{
+     "name": "tweet_id",
+     "type": "STRING",
+     "mode": "NULLABLE",
+     "description": "Unique Twitter tweet id"
+},
+{
+     "name": "not_offensive",
+     "type": "FLOAT64",
+     "mode": "NULLABLE",
+     "description": "Model score for a given tweet"
+}
+]

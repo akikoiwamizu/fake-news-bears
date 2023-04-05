@@ -15,10 +15,7 @@ import json
 from charset_normalizer import CharsetNormalizerMatches as CnM
 
 encoding = (
-    CnM.from_path("samples/json_users_out/20230205-143622_users_.json")
-    .best()
-    .first()
-    .encoding
+    CnM.from_path("samples/json_users_out/20230205-143622_users_.json").best().first().encoding
 )
 print(f"encoding is: {encoding}")
 
