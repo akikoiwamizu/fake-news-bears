@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Our Product</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted"></h3>
                 </div>
             </div>
             <div class="row">
@@ -17,7 +17,7 @@
                           <a class="nav-link" data-toggle="tab" href="#data1" role="tab">Data</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" data-toggle="tab" href="#models1" role="tab">Model</a>
+                          <a class="nav-link" data-toggle="tab" href="#models1" role="tab">Models</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" data-toggle="tab" href="#infra1" role="tab">Infrastructure</a>
@@ -32,17 +32,28 @@
                       <div class="tab-content text-left">
                         <div class="tab-pane active" id="data1" role="tabpanel">
                           <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
-                          <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
+                          <p>
+                            <strong>Example Tweets:</strong>
+                            <div id="container">
+                                <img src="https://media-be.chewy.com/wp-content/uploads/2021/05/11162926/German-Shepherd-1358309706-1024x591.jpg" alt="German Shepherd" width="300" height="300" class="germanshepherd">
+                                <img src="https://d.newsweek.com/en/full/1792784/shiba-inu.jpg?w=1600&h=1600&q=88&f=6bdbd5b7d09308ad718f0f3fce4597ae" alt="Shiba Inu" width="300" height="300" class="shibainu">
+                            </div>
+                          </p>
                         </div>
                         <div class="tab-pane" id="models1" role="tabpanel">
-                          <p>I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
-                          <p>I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
-                          <a data-toggle="tab" aria-expanded="false" style="display: flex; justify-content: center;"><img src="https://www.tableau.com/sites/default/files/2020-11/05-HP-Leader-460X300%402x.png" alt="Tableau Example" class="img-responsive"></a>
+                          <p>
+                              We have two parts to our modeling: 1) scoring text with existing research models; 2) aggregating scored text to evaluate each Twitter user.
+                          </p>
+                          <p>
+                              Using existing research on detecting sentiment and truthfulness with large language models, we incorporated them into our pipeline to score Twitter tweet content. We used 6 sentiment models for detecting hate, irony, offensive, fake, joy, and anger. To detect disinformation, we used three models on detecting the truthfulness of tweets. Check out the "Our Models" section to learn more.
+                          </p>
+                          <p>
+                              To create a composite score for each user, all tweets are scored, scaled using a standard scaler, and added together. For example, starting with 9 different scores for each tweet, we scale them so that 0 is neutral, positive is good behavior, and negative is bad behavior. These 9 different scaled scores are summed together for a composite score of the tweet of the user.
+                              Then, we calculate the average composite tweet score for each user for all their tweets to arrive at an aggregate score for each user. The final aggregate score for each user represents how susceptible a user is to spreading disinformation.
+                          </p>
                         </div>
                         <div class="tab-pane" id="infra1" role="tabpanel">
-                          <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
-                          <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
-                          <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
+                          <a data-toggle="tab" aria-expanded="false" style="display: flex; justify-content: center;"><img src="img/product/pipeline.png" alt="Data Pipeline Diagram" class="img-responsive"></a>
                         </div>
                         <div class="tab-pane" id="results1" role="tabpanel">
                           <p>I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I understand culture. I am the nucleus. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.</p>
