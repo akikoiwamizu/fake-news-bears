@@ -1,15 +1,21 @@
 ---
-title: Dreams
-subtitle: Website Design
+title: Long Short-Term Memory
+subtitle: An Artificial Neural Network
 layout: default
 modal-id: 1
-date: 2014-07-18
-img: dreams.png
-thumbnail: dreams-thumbnail.png
-alt: image-alt
-project-date: April 2014
-client: Start Bootstrap
-category: Web Development
-description: Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.
+date: 2022-02-23
+img: LSTM.png
+thumbnail: LSTM_wide.png
+alt: Long Short-Term Memory Model
+project-date: February 2022
+source: Medium
+source-link: https://towardsdatascience.com/the-fight-against-fake-news-with-deep-learning-6c41dd9eaae4
+category: Intro to LSTM Networks
+category-link: https://towardsdatascience.com/an-introduction-to-long-short-term-memory-networks-lstm-27af36dde85d
+description: "The long short-term memory (LSTM) networks model works by first cleaning, tokenizing, and encoding the separated words of a sample of text, and then incorporating a variety of recurrent neural networks (RNNs) that are capable of learning long-term dependencies in order to grade each word. The words were embedded with values from Tensorflow’s wiki-words-250 embeddings, which uses a Word2Vec Skip-Gram architecture.
+<br><br>As an example, for the sentence “I am going on a trip in a boat”, the model will first split up each of the words into a sequenced array of words. It will ignore stopwords, in this case words like “I” and “am” which do not typically add a great deal of meaning. It will also “lemmatize” verb conjugations, in order to distill multiple forms of the same word into one unit -> “going” becomes “go”. The vector of words is then weighted using the previously mentioned embedding architecture.
+<br><br>After obtaining a vector with the words, a softmax regression classifier is then applied and the output is a probability vector for each tweet. Using an Adam optimizer, binary cross-entropy loss, and accuracy as our goal metric, we determined our truth scores for each tweet.
+<br><br>We chose this model because of its ease of implementation, and its transparency in process. The relative simplicity of the model lends itself towards being a good baseline to draw from. We used it as one of our models of identifying truth, alongside the Real and Dense Layer models.
+<br><br>This model was trained on the balanced University of Victoria’s ISOT Fake News Dataset, containing 12,600 real news articles from Reuters and over 12,600 fake news articles flagged by Politifact (a US-based fact-checking organization). The subject matter of the tweets is primarily political and world news."
 
 ---

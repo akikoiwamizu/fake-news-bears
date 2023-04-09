@@ -285,7 +285,7 @@ header {
     text-align: center;
     color: #222;
     background-attachment: scroll;
-    background-image: url('{{ site.baseurl }}/img/banner_test_3.png');
+    background-image: url('{{ site.baseurl }}/img/campus-header-icon.png');
     background-position: center center;
     background-repeat: none;
     -webkit-background-size: cover;
@@ -737,10 +737,12 @@ ul.social-buttons li a:active {
 }
 
 .portfolio-modal .modal-content p {
+    text-align: left;
     margin-bottom: 30px;
 }
 
 .portfolio-modal .modal-content p.item-intro {
+    text-align: center;
     margin: 20px 0 30px;
     font-family: {{ site.data.template.font.secondary }};
     font-size: 16px;

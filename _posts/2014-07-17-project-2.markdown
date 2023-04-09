@@ -1,15 +1,20 @@
 ---
-title: Escape
-subtitle: Website Design
+title: Dense Layer
+subtitle: An Artificial Neural Network
 layout: default
 modal-id: 2
-date: 2014-07-17
-img: escape.png
-thumbnail: escape-thumbnail.png
-alt: image-alt
-project-date: April 2014
-client: Start Bootstrap
-category: Web Development
-description: Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.
+date: 2022-02-23
+img: Dense.png
+thumbnail: Dense_wide.png
+alt: Dense Layer Model
+project-date: February 2022
+source: Medium
+source-link: https://towardsdatascience.com/the-fight-against-fake-news-with-deep-learning-6c41dd9eaae4
+category: Intro to Dense Layer
+category-link: https://towardsdatascience.com/introduction-to-convolutional-neural-network-cnn-de73f69c5b83
+description: "The Dense Layer encoding model works in much the same way as the aforementioned LSTM model, but tries to improve on it. The term dense layer comes from the fact that the neurons that are processing inputs and sending outputs are listening to all neurons from the previous layer, i.e. the neurons are packed together more “densely”.
+<br><br>Text is cleaned, lemmatized, and split the same way as in the LSTM model. However, embeddings are provided instead using Gensim Doc2Vec Word Vectors. Our dense layers are also programmed with 20 and 5 neurons, respectively, and a ReLU activation function to aggregate outputs into one final rating score - and they utilize one layer of the previously-stated LSTM model earlier.
+<br><br>We chose this model to build upon and hopefully improve on some of the limitations of the LSTM models. Because the LSTM model is looking at each word independently, it can sometimes conflate multiple meanings behind the same word and treat sentences like a “string of words” vs. a semantic aggregation with context. Adding additional layers to encodings means that there are more opportunities for contextual meaning to translate into the final score output. We used this model as a second version of a truthfulness test.
+<br><br>The data for this model comes from the same source as the LSTM model, the University of Victoria’s ISOT Fake News Dataset."
 
 ---

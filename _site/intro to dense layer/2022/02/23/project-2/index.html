@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dense Layer</title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Repository for UC Berkeley MIDS Capstone Project (Spring 2023) for team Fake News Bears looking at US politician Twitter data to assess the spread of and exposure to disinformation online.">
+    <link rel="canonical" href="http://localhost:4000/intro%20to%20dense%20layer/2022/02/23/project-2/">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/Favicon_Grey_White.png">
+
+    <!-- Custom CSS & Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+
+    <body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" id="logo" href="#page-top">
+                    <img src="img/logos/Logo_Transparent_Small.png" width="200" height="80" alt="Fake News Bears">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#mission">Mission</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#demo">Demo</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#product">Product</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#models">Models</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#ethics">Ethics</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#team">Team</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in">Exposing Disinformation</div>
+                <div class="intro-heading">Through Education</div>
+                <a href="#demo" class="page-scroll btn btn-xl">Product Demo</a>
+            </div>
+        </div>
+    </header>
+<!--
+        
+          
+        
+          
+        
+          
+        
+ -->
+
+    <!-- Mission Section -->
+    <section id="mission">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Our Mission</h2>
+                    <h3 class="section-subheading text-muted">Educating social media users about their exposure to disinformation online.</h3>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Tweet Collection</h4>
+                    <p class="text-muted">Collect historical Twitter data for US congressional members from our partners and combine with the latest tweets pulled from the Twitter API.</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-cogs fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Model Application</h4>
+                    <p class="text-muted">Apply eight pre-built models selected from existing research and create an aggregated score at the user-level.</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Custom Reporting</h4>
+                    <p class="text-muted">Display results in an interactive dashboard allowing users to search for their favorite US politicians and learn more about the disinformation score they received and why.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Stats Section -->
+    <section id="stats" class="bg-darkest-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <h2 class="section-heading text-primary">The Problem</h2>
+                    <p class="text-primary">Media disinformation has the power to negatively impact countless lives, and is often used to marginalize at-risk members of the population. It can spread like wildfire, and detection of fake news is often not simple. Our hope is to increase awareness and spread education by creating easy-to-understand and implement scoring mechanisms for influential Twitter users on their truth and emotional content.</p>
+                </div>
+                <div class="col-md-6 text-center">
+                    <div class="row">
+                        <div class="COL-XS-12 COL-SM-6">
+                            <h2 class="section-heading text-primary">70% More Likely</h2>
+                            <h3 class="section-subheading text-primary">
+                                <a href="https://www.reuters.com/article/us-usa-cyber-twitter-idUSKCN1GK2QQ" target="_blank" rel="noopener noreferrer">
+                                    "False news 70 percent more likely to spread on Twitter."
+                                </a>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="COL-XS-12 COL-SM-6">
+                            <h2 class="section-heading text-primary">6X Faster</h2>
+                            <h3 class="section-subheading text-primary">
+                                <a href="https://www.pbs.org/newshour/science/false-news-travels-6-times-faster-on-twitter-than-truthful-news" target="_blank" rel="noopener noreferrer">
+                                    "False news travels 6 times faster on Twitter than truthful news."
+                                </a>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Demo Section -->
+    <section id="demo">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Product Demo</h2>
+                    <h3 class="section-subheading text-muted"></h3>
+                </div>
+            </div>
+            <div class="video-responsive">
+                <iframe width="720" height="405" style="margin:auto;" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Fake News Bears Capstone Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section id="product" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Our Product</h2>
+                    <h3 class="section-subheading text-muted"></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                  <!-- Tabs with Background on Card -->
+                  <div class="card">
+                    <div class="card-header">
+                      <ul class="nav nav-tabs nav-justified" role="tablist" data-background-color="yellow">
+                        <li class="nav-item active">
+                          <a class="nav-link" data-toggle="tab" href="#data1" role="tab">Data</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#models1" role="tab">Models</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#infra1" role="tab">Infrastructure</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#results1" role="tab">Performance</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="card-body">
+                      <!-- Tab panes -->
+                      <div class="tab-content text-left">
+                        <div class="tab-pane active" id="data1" role="tabpanel">
+                          <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
+                          <p>
+                            <strong>Example Tweets:</strong>
+                            <div id="container">
+                                <img src="https://media-be.chewy.com/wp-content/uploads/2021/05/11162926/German-Shepherd-1358309706-1024x591.jpg" alt="German Shepherd" width="300" height="300" class="germanshepherd">
+                                <img src="https://d.newsweek.com/en/full/1792784/shiba-inu.jpg?w=1600&h=1600&q=88&f=6bdbd5b7d09308ad718f0f3fce4597ae" alt="Shiba Inu" width="300" height="300" class="shibainu">
+                            </div>
+                          </p>
+                        </div>
+                        <div class="tab-pane" id="models1" role="tabpanel">
+                          <p>
+                              We have two parts to our modeling: 1) scoring text with existing research models; 2) aggregating scored text to evaluate each Twitter user.
+                          </p>
+                          <p>
+                              Using existing research on detecting sentiment and truthfulness with large language models, we incorporated them into our pipeline to score Twitter tweet content. We used 6 sentiment models for detecting hate, irony, offensive, fake, joy, and anger. To detect disinformation, we used three models on detecting the truthfulness of tweets. Check out the "Our Models" section to learn more.
+                          </p>
+                          <p>
+                              To create a composite score for each user, all tweets are scored, scaled using a standard scaler, and added together. For example, starting with 9 different scores for each tweet, we scale them so that 0 is neutral, positive is good behavior, and negative is bad behavior. These 9 different scaled scores are summed together for a composite score of the tweet of the user.
+                              Then, we calculate the average composite tweet score for each user for all their tweets to arrive at an aggregate score for each user. The final aggregate score for each user represents how susceptible a user is to spreading disinformation.
+                          </p>
+                        </div>
+                        <div class="tab-pane" id="infra1" role="tabpanel">
+                          <a data-toggle="tab" aria-expanded="false" style="display: flex; justify-content: center;"><img src="img/product/pipeline.png" alt="Data Pipeline Diagram" class="img-responsive"></a>
+                        </div>
+                        <div class="tab-pane" id="results1" role="tabpanel">
+                          <p>I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I understand culture. I am the nucleus. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.</p>
+                          <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
+                          <div class="tableauPlaceholder" id="viz1680558069486" style="position: relative;">
+                              <noscript>
+                                  <a href="#"><img alt="Fake News Bears Dashboard" src="https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Mo&#47;ModelScoreExploration-PoliticiansMVP&#47;Radar&#47;1_rss.png" style="border: none;" /></a>
+                              </noscript>
+                              <object class="tableauViz" style="display: none;">
+                                  <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" /> <param name="embed_code_version" value="3" /> <param name="site_root" value="" /><param name="name" value="ModelScoreExploration-PoliticiansMVP&#47;Radar" />
+                                  <param name="tabs" value="yes" /><param name="toolbar" value="yes" /><param name="static_image" value="https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Mo&#47;ModelScoreExploration-PoliticiansMVP&#47;Radar&#47;1.png" />
+                                  <param name="animate_transition" value="yes" /><param name="display_static_image" value="yes" /><param name="display_spinner" value="yes" /><param name="display_overlay" value="yes" /><param name="display_count" value="yes" />
+                                  <param name="language" value="en-US" /><param name="filter" value="publish=yes" />
+                              </object>
+                          </div>
+                          <script type="text/javascript">
+                              var divElement = document.getElementById("viz1680558069486");
+                              var vizElement = divElement.getElementsByTagName("object")[0];
+                              if (divElement.offsetWidth > 800) {
+                                  vizElement.style.minWidth = "1200px";
+                                  vizElement.style.maxWidth = "100%";
+                                  vizElement.style.minHeight = "850px";
+                                  vizElement.style.maxHeight = divElement.offsetWidth * 0.75 + "px";
+                              } else if (divElement.offsetWidth > 500) {
+                                  vizElement.style.minWidth = "1200px";
+                                  vizElement.style.maxWidth = "100%";
+                                  vizElement.style.minHeight = "850px";
+                                  vizElement.style.maxHeight = divElement.offsetWidth * 0.75 + "px";
+                              } else {
+                                  vizElement.style.width = "100%";
+                                  vizElement.style.minHeight = "800px";
+                                  vizElement.style.maxHeight = divElement.offsetWidth * 1.77 + "px";
+                              }
+                              var scriptElement = document.createElement("script");
+                              scriptElement.src = "https://public.tableau.com/javascripts/api/viz_v1.js";
+                              vizElement.parentNode.insertBefore(scriptElement, vizElement);
+                          </script>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End Tabs on plain Card -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Model Details Section -->
+    <section id="models">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Our Models</h2>
+                    <h3 class="section-subheading text-muted">Learn more about the models we used to score Twitter posts.</h3>
+                </div>
+            </div>
+            <div class="row">
+            
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/LSTM_wide.png" class="img-responsive img-centered" alt="Long Short-Term Memory Model">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Long Short-Term Memory</h4>
+                        <p class="text-muted">An Artificial Neural Network</p>
+                    </div>
+                </div>
+            
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/Dense_wide.png" class="img-responsive img-centered" alt="Dense Layer Model">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Dense Layer</h4>
+                        <p class="text-muted">An Artificial Neural Network</p>
+                    </div>
+                </div>
+            
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/Cardiff_wide.png" class="img-responsive img-centered" alt="Cardiff Models">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Cardiff</h4>
+                        <p class="text-muted">Tweet Sentiment Classification</p>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+
+    <!-- Ethics Section -->
+    <section id="ethics" class="bg-medium-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-primary">Ethics & Limitations</h2>
+                    <h3 class="section-subheading text-primary">Lorem ipsum dolor sit amet consectetur.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                  <!-- Tabs with Background on Card -->
+                  <div class="card">
+                    <div class="card-header">
+                      <ul class="nav nav-tabs nav-justified" role="tablist" data-background-color="yellow">
+                        <li class="nav-item active">
+                          <a class="nav-link" data-toggle="tab" href="#disc1" role="tab">Disclaimer</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#ethics1" role="tab">Ethics</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#limits1" role="tab">Limitations</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#privacy1" role="tab">Data Privacy</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="card-body">
+                      <!-- Tab panes -->
+                      <div class="tab-content text-left">
+                        <div class="tab-pane active" id="disc1" role="tabpanel">
+                          <p>Our team’s intention for building this product is to educate social media users, but we must acknowledge that it has the potential to be used in ways that go against our mission and values. The models we use to score tweets on truthfulness and sentiment have limitations and possible biases as they are only good as the data they were trained on. While we strive for accuracy, there are limitations to these methods, including the variations in the interpretation of language, and the subjective nature of determining what constitutes "fake news." Therefore, the scores should be taken as indicative rather than definitive. </p>
+                          <p>This project aims to (1) inform Twitter users about the content that politicians are sharing on the platform and (2) inform politicians on how they might contribute to the spread of fake news. We strongly advise our viewers to review our “Interpretations” section on how to critically evaluate the results for a given politician. When in doubt, please feel free to reach out to anyone on our team and we would be happy to help.</p>
+                        </div>
+                        <div class="tab-pane" id="ethics1" role="tabpanel">
+                          <p>I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
+                          <p>I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
+                        </div>
+                        <div class="tab-pane" id="limits1" role="tabpanel">
+                          <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
+                          <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
+                          <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
+                        </div>
+                        <div class="tab-pane" id="privacy1" role="tabpanel">
+                          <p>I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I understand culture. I am the nucleus. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.</p>
+                          <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End Tabs on plain Card -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Our Team</h2>
+                    <h3 class="section-subheading text-muted"></h3>
+                </div>
+            </div>
+            <div class="row">
+                
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="img/team/1.jpg" class="img-responsive img-circle" alt="" width="200" height="200">
+                        <h4>Akiko Iwamizu</h4>
+                        <p class="text-muted">SME & App Development</p>
+                        <ul class="list-inline social-buttons">
+                            
+                            <li>
+                                <a href="mailto:aiwamizu@berkeley.edu" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="https://github.com/akikoiwamizu/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa fa-github"></i>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="https://www.linkedin.com/in/akikoiwamizu/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </li>
+                            
+
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="img/team/2.jpg" class="img-responsive img-circle" alt="" width="200" height="200">
+                        <h4>Brook Bi</h4>
+                        <p class="text-muted">Project Management</p>
+                        <ul class="list-inline social-buttons">
+                            
+                            <li>
+                                <a href="mailto:brook.bi@berkeley.edu" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="https://github.com/brookbi" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa fa-github"></i>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="https://www.linkedin.com/in/brook-bi/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </li>
+                            
+
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="img/team/3.jpg" class="img-responsive img-circle" alt="" width="200" height="200">
+                        <h4>Giorgio Soggiu</h4>
+                        <p class="text-muted">Exploratory Data Analysis</p>
+                        <ul class="list-inline social-buttons">
+                            
+                            <li>
+                                <a href="mailto:soggiugiorgio@berkeley.edu" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="https://soggiugiorgio.github.io/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa fa-github"></i>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="https://www.linkedin.com/in/giorgio-soggiu/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </li>
+                            
+
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="img/team/4.jpg" class="img-responsive img-circle" alt="" width="200" height="200">
+                        <h4>Jason Yang</h4>
+                        <p class="text-muted">Product Management</p>
+                        <ul class="list-inline social-buttons">
+                            
+                            <li>
+                                <a href="mailto:chiaojyang@berkeley.edu" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="https://github.com/jasonwithcoffee" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa fa-github"></i>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="https://www.linkedin.com/in/jasonwithcoffee/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </li>
+                            
+
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="img/team/5.jpg" class="img-responsive img-circle" alt="" width="200" height="200">
+                        <h4>Razal Minhas</h4>
+                        <p class="text-muted">ML Engineering</p>
+                        <ul class="list-inline social-buttons">
+                            
+                            <li>
+                                <a href="mailto:razal@berkeley.edu" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="https://github.com/razzlemacher" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa fa-github"></i>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="https://www.linkedin.com/in/razal-minhas/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </li>
+                            
+
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="img/team/6.jpg" class="img-responsive img-circle" alt="" width="200" height="200">
+                        <h4>Rohin Chabra</h4>
+                        <p class="text-muted">Data Engineering</p>
+                        <ul class="list-inline social-buttons">
+                            
+                            <li>
+                                <a href="mailto:rchabra@berkeley.edu" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="https://github.com/rchabra" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa fa-github"></i>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="https://www.linkedin.com/in/rohin-chabra-11800368/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </li>
+                            
+
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+      <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Fake News Bears 2023</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        
+                        <li>
+                            <a href="https://github.com/akikoiwamizu/fake-news-bears/" target="_blank" rel="noopener noreferrer">
+                                <i class="fa fa-github"></i>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+     <!-- Portfolio Modals -->
+ 
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Long Short-Term Memory</h2>
+                            <hr class="star-primary">
+                            <img src="img/portfolio/LSTM.png" class="img-responsive img-centered" alt="Long Short-Term Memory Model">
+                            <p>The long short-term memory (LSTM) networks model works by first cleaning, tokenizing, and encoding the separated words of a sample of text, and then incorporating a variety of recurrent neural networks (RNNs) that are capable of learning long-term dependencies in order to grade each word. The words were embedded with values from Tensorflow’s wiki-words-250 embeddings, which uses a Word2Vec Skip-Gram architecture. <br><br>As an example, for the sentence “I am going on a trip in a boat”, the model will first split up each of the words into a sequenced array of words. It will ignore stopwords, in this case words like “I” and “am” which do not typically add a great deal of meaning. It will also “lemmatize” verb conjugations, in order to distill multiple forms of the same word into one unit -> “going” becomes “go”. The vector of words is then weighted using the previously mentioned embedding architecture. <br><br>After obtaining a vector with the words, a softmax regression classifier is then applied and the output is a probability vector for each tweet. Using an Adam optimizer, binary cross-entropy loss, and accuracy as our goal metric, we determined our truth scores for each tweet. <br><br>We chose this model because of its ease of implementation, and its transparency in process. The relative simplicity of the model lends itself towards being a good baseline to draw from. We used it as one of our models of identifying truth, alongside the Real and Dense Layer models. <br><br>This model was trained on the balanced University of Victoria’s ISOT Fake News Dataset, containing 12,600 real news articles from Reuters and over 12,600 fake news articles flagged by Politifact (a US-based fact-checking organization). The subject matter of the tweets is primarily political and world news.</p>
+                            <ul class="list-inline item-details">
+                                <li>Date:
+                                    <strong><a href="https://towardsdatascience.com/the-fight-against-fake-news-with-deep-learning-6c41dd9eaae4">February 2022</a>
+                                    </strong>
+                                </li>
+                                <li>Source:
+                                    <strong><a href="https://towardsdatascience.com/the-fight-against-fake-news-with-deep-learning-6c41dd9eaae4">Medium</a>
+                                    </strong>
+                                </li>
+                                <li>Learn More:
+                                    <strong><a href="https://towardsdatascience.com/an-introduction-to-long-short-term-memory-networks-lstm-27af36dde85d">Intro to LSTM Networks</a>
+                                    </strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Dense Layer</h2>
+                            <hr class="star-primary">
+                            <img src="img/portfolio/Dense.png" class="img-responsive img-centered" alt="Dense Layer Model">
+                            <p>The Dense Layer encoding model works in much the same way as the aforementioned LSTM model, but tries to improve on it. The term dense layer comes from the fact that the neurons that are processing inputs and sending outputs are listening to all neurons from the previous layer, i.e. the neurons are packed together more “densely”. <br><br>Text is cleaned, lemmatized, and split the same way as in the LSTM model. However, embeddings are provided instead using Gensim Doc2Vec Word Vectors. Our dense layers are also programmed with 20 and 5 neurons, respectively, and a ReLU activation function to aggregate outputs into one final rating score - and they utilize one layer of the previously-stated LSTM model earlier. <br><br>We chose this model to build upon and hopefully improve on some of the limitations of the LSTM models. Because the LSTM model is looking at each word independently, it can sometimes conflate multiple meanings behind the same word and treat sentences like a “string of words” vs. a semantic aggregation with context. Adding additional layers to encodings means that there are more opportunities for contextual meaning to translate into the final score output. We used this model as a second version of a truthfulness test. <br><br>The data for this model comes from the same source as the LSTM model, the University of Victoria’s ISOT Fake News Dataset.</p>
+                            <ul class="list-inline item-details">
+                                <li>Date:
+                                    <strong><a href="https://towardsdatascience.com/the-fight-against-fake-news-with-deep-learning-6c41dd9eaae4">February 2022</a>
+                                    </strong>
+                                </li>
+                                <li>Source:
+                                    <strong><a href="https://towardsdatascience.com/the-fight-against-fake-news-with-deep-learning-6c41dd9eaae4">Medium</a>
+                                    </strong>
+                                </li>
+                                <li>Learn More:
+                                    <strong><a href="https://towardsdatascience.com/introduction-to-convolutional-neural-network-cnn-de73f69c5b83">Intro to Dense Layer</a>
+                                    </strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Cardiff</h2>
+                            <hr class="star-primary">
+                            <img src="img/portfolio/Cardiff.png" class="img-responsive img-centered" alt="Cardiff Models">
+                            <p>The Cardiff models work by first cleaning, tokenizing, and encoding the separated words of a sample of text and then passes them through various transformers. They are trained on a large unlabeled corpus and then fine-tuned to the task for where an appropriate training set exists. <br><br>Training was done by starting with an original pre-trained Language Model (LM) and continued to train with Twitter data, keeping the original tokenizer and the same masked LM loss. For the tweet “Another illegal alien that shouldn’t be in America killed an innocent American couple! #BuildThatWall”, the models will make user mentions are anonymized and line breaks and website links are removed. After that it compares the word choices to predicting whether a tweet is hateful or not against any of two target communities: immigrants and women. The dataset of choice stems from the SemEval2019 Hateval challenge. <br><br>Based on the number of tokens that match and the probability it chooses the label for a given task.  There are 6 tasks of hate, irony, offensive, fake, joy, and anger. Each task has their own dataset that the tokens can stem from. <br><br>We chose this model because of its ease of implementation and its transparency in process. It was easy to download the model from HuggingFace and implement it readily. This model was trained on the 60 Million tweets and then evaluated against 40,000 tweets.</p>
+                            <ul class="list-inline item-details">
+                                <li>Date:
+                                    <strong><a href="https://arxiv.org/pdf/2010.12421.pdf">October 2020</a>
+                                    </strong>
+                                </li>
+                                <li>Source:
+                                    <strong><a href="https://arxiv.org/pdf/2010.12421.pdf">TweetEval Research</a>
+                                    </strong>
+                                </li>
+                                <li>Learn More:
+                                    <strong><a href="https://huggingface.co/cardiffnlp/twitter-roberta-base">HuggingFace RoBERTa-base model</a>
+                                    </strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+     <!-- jQuery Version 1.11.0 -->
+    <script src="/js/jquery-1.11.0.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="/js/jquery.easing.min.js"></script>
+    <script src="/js/classie.js"></script>
+    <script src="/js/cbpAnimatedHeader.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/js/agency.js"></script>
+
+
+    </body>
+</html>
