@@ -20,10 +20,13 @@
                           <a class="nav-link" data-toggle="tab" href="#models1" role="tab">Models</a>
                         </li>
                         <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#performance1" role="tab">Performance</a>
+                        </li>
+                        <li class="nav-item">
                           <a class="nav-link" data-toggle="tab" href="#infra1" role="tab">Infrastructure</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" data-toggle="tab" href="#results1" role="tab">Performance</a>
+                          <a class="nav-link" data-toggle="tab" href="#results1" role="tab">Results</a>
                         </li>
                       </ul>
                     </div>
@@ -54,45 +57,71 @@
                               Then, we calculate the average composite tweet score for each user for all their tweets to arrive at an aggregate score for each user. The final aggregate score for each user represents how susceptible a user is to spreading disinformation.
                           </p>
                         </div>
+                        <div class="tab-pane" id="performance1" role="tabpanel">
+                          <p>
+                              Given that many of our models assess sentiment, which is largely subjective, it was quite challenging to assess model performance objectively. Even for a matter such as truth, the difficulty lies in how to rate statements that merely constitute an opinion, or are roughly true but contain a small falsehood. Thus, aside from confirming the validity of models within an individual context by referencing the sources they came from, human evaluation was another approach taken to determine how agreeable the model outputs would be, on average, in comparison to a human observer.
+                          </p>
+                          <p>
+                              In general, our chosen models had promising results in terms of sentiment and text analysis, and also served to demonstrate potential shortcomings and challenges to overcome in their next iterations. While they overall did well in detecting the negative sentiments of hate, irony, and offensiveness within tweets, truth detection was a much more difficult problem. When comparing human ratings to their equivalent model outputs, the model scores differed from their human counterparts by an average of 15% in the sentiment-based models, but a whopping 52% in the truth-based models.
+                          </p>
+                          <p>
+                              These numerical figures should be taken with a grain of salt, however. Even between human evaluators, there was a measured difference of 3% and 17%, respectively, between different human ratings.  Thus, part of this discrepancy can be explained as the objective difficulty in rating the truthiness of many short statements (evident in the person-person score differences), while another part could potentially be chalked up to the limited body of text that is present in tweets. It appears that certain models may rely on a larger corpus of text in order to detect idiosyncrasies and false statements.
+                          </p>
+                          <p>
+                              Interestingly, the truth sentiment graphs largely seemed to agree with one another, which suggests that they might be “thinking” the same way. Further steps to improve the model may constitute undertakings such as integrating the text or image within links as an input, using retweets, likes, and comments to add context to individual scores, and continuing the cluster analysis in model combination to determine if any interesting groups of users emerge.
+                          </p>
+                        </div>
                         <div class="tab-pane" id="infra1" role="tabpanel">
                           <a data-toggle="tab" aria-expanded="false" style="display: flex; justify-content: center;"><img src="img/product/pipeline.png" alt="Data Pipeline Diagram" class="img-responsive"></a>
                         </div>
                         <div class="tab-pane" id="results1" role="tabpanel">
-                          <p>I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I understand culture. I am the nucleus. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.</p>
-                          <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
-                          <div class="tableauPlaceholder" id="viz1680558069486" style="position: relative;">
-                              <noscript>
-                                  <a href="#"><img alt="Fake News Bears Dashboard" src="https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Mo&#47;ModelScoreExploration-PoliticiansMVP&#47;Radar&#47;1_rss.png" style="border: none;" /></a>
-                              </noscript>
-                              <object class="tableauViz" style="display: none;">
-                                  <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" /> <param name="embed_code_version" value="3" /> <param name="site_root" value="" /><param name="name" value="ModelScoreExploration-PoliticiansMVP&#47;Radar" />
-                                  <param name="tabs" value="yes" /><param name="toolbar" value="yes" /><param name="static_image" value="https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Mo&#47;ModelScoreExploration-PoliticiansMVP&#47;Radar&#47;1.png" />
-                                  <param name="animate_transition" value="yes" /><param name="display_static_image" value="yes" /><param name="display_spinner" value="yes" /><param name="display_overlay" value="yes" /><param name="display_count" value="yes" />
-                                  <param name="language" value="en-US" /><param name="filter" value="publish=yes" />
-                              </object>
-                          </div>
-                          <script type="text/javascript">
-                              var divElement = document.getElementById("viz1680558069486");
-                              var vizElement = divElement.getElementsByTagName("object")[0];
-                              if (divElement.offsetWidth > 800) {
-                                  vizElement.style.minWidth = "1200px";
-                                  vizElement.style.maxWidth = "100%";
-                                  vizElement.style.minHeight = "850px";
-                                  vizElement.style.maxHeight = divElement.offsetWidth * 0.75 + "px";
-                              } else if (divElement.offsetWidth > 500) {
-                                  vizElement.style.minWidth = "1200px";
-                                  vizElement.style.maxWidth = "100%";
-                                  vizElement.style.minHeight = "850px";
-                                  vizElement.style.maxHeight = divElement.offsetWidth * 0.75 + "px";
-                              } else {
-                                  vizElement.style.width = "100%";
-                                  vizElement.style.minHeight = "800px";
-                                  vizElement.style.maxHeight = divElement.offsetWidth * 1.77 + "px";
-                              }
-                              var scriptElement = document.createElement("script");
-                              scriptElement.src = "https://public.tableau.com/javascripts/api/viz_v1.js";
-                              vizElement.parentNode.insertBefore(scriptElement, vizElement);
-                          </script>
+                            <div class="tableauPlaceholder" id="viz1680558069486" style="position: relative;">
+                                <noscript>
+                                    <a href="#"><img alt="Fake News Bears Dashboard" src="https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Mo&#47;ModelScoreExploration-PoliticiansMVP&#47;Radar&#47;1_rss.png" style="border: none;" /></a>
+                                </noscript>
+                                <object class="tableauViz" style="display: none;">
+                                    <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" /> <param name="embed_code_version" value="3" /> <param name="site_root" value="" /><param name="name" value="ModelScoreExploration-PoliticiansMVP&#47;Radar" />
+                                    <param name="tabs" value="yes" /><param name="toolbar" value="yes" /><param name="static_image" value="https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Mo&#47;ModelScoreExploration-PoliticiansMVP&#47;Radar&#47;1.png" />
+                                    <param name="animate_transition" value="yes" /><param name="display_static_image" value="yes" /><param name="display_spinner" value="yes" /><param name="display_overlay" value="yes" /><param name="display_count" value="yes" />
+                                    <param name="language" value="en-US" /><param name="filter" value="publish=yes" />
+                                </object>
+                            </div>
+                            <script type="text/javascript">
+                                var divElement = document.getElementById("viz1680558069486");
+                                var vizElement = divElement.getElementsByTagName("object")[0];
+                                if (divElement.offsetWidth > 800) {
+                                    vizElement.style.minWidth = "1200px";
+                                    vizElement.style.maxWidth = "100%";
+                                    vizElement.style.minHeight = "850px";
+                                    vizElement.style.maxHeight = divElement.offsetWidth * 0.75 + "px";
+                                } else if (divElement.offsetWidth > 500) {
+                                    vizElement.style.minWidth = "1200px";
+                                    vizElement.style.maxWidth = "100%";
+                                    vizElement.style.minHeight = "850px";
+                                    vizElement.style.maxHeight = divElement.offsetWidth * 0.75 + "px";
+                                } else {
+                                    vizElement.style.width = "100%";
+                                    vizElement.style.minHeight = "800px";
+                                    vizElement.style.maxHeight = divElement.offsetWidth * 1.77 + "px";
+                                }
+                                var scriptElement = document.createElement("script");
+                                scriptElement.src = "https://public.tableau.com/javascripts/api/viz_v1.js";
+                                vizElement.parentNode.insertBefore(scriptElement, vizElement);
+                            </script>
+                          <h4>How to Interpret the Radar Plot</h4>
+                          <p>
+                              The radar plot shows the performance of six models for a selected user. The scores represent the politician's rank, also called percentile, compared to other politicians across six domains of interest. The models initially scored politicians on a scale from 0 to 1 and ranked the results to obtain a value. The value indicates how the user performs compared to others. For example, a score of 93% in one category suggests that the user performs better than 93% of other users but worse than 7% (100 - 93 = 7) of users. A larger graph with a hexagonal shape indicates better performance compared to other users and suggests the user has an overall positive influence on the Twitter network.
+                          </p>
+                          <p>
+                              In summary, the radar plot provides a representation of a politician's relative performance across multiple domains of interest  and visualizes an overall pattern of behavior of a user on Twitter.
+                          </p>
+                          <h4>How to Interpret the Distribution Plot</h4>
+                          <p>
+                              The distribution plot displays the distribution of values obtained/calculated from the last 100 tweets for the selected politician. The x-axis indicates the tweet’s rank, also called percentile, for a selected model/score. The y-axis represents the count of tweets per percentile bucket. A high peak approaching the 90th percentile suggests that a significant number of the politician's tweets outperform those of other politicians in the selected domain of interest.
+                          </p>
+                          <p>
+                              In summary, the distribution plot provides a representation of a politician's tweet performance in a domain for a given model. It indicates whether their tweets perform better or worse than those of other users.
+                          </p>
                         </div>
                       </div>
                     </div>

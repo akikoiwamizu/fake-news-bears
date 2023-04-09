@@ -840,6 +840,10 @@ ul.social-buttons li a:active {
   padding: 10px;
 }
 
+#product .tab-pane > h4 {
+  padding-left: 10px;
+}
+
 #product .card .nav-tabs {
   border-top-right-radius: 0.1875rem;
   border-top-left-radius: 0.1875rem;
