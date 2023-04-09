@@ -836,12 +836,12 @@ ul.social-buttons li a:active {
   width: 800px;
 }
 
-#product .tab-pane {
-  padding: 10px;
-}
-
 #product .tab-pane > h4 {
   padding-left: 10px;
+}
+
+#product .tab-pane {
+  padding: 10px;
 }
 
 #product .card .nav-tabs {
@@ -945,6 +945,15 @@ ul.social-buttons li a:active {
 
 #ethics .tab-pane > a img {
   width: 800px;
+}
+
+#ethics .tab-pane > h4 {
+  padding-left: 10px;
+}
+
+#ethics .tab-pane > li {
+  padding-left: 20px;
+  font-size: 14px;
 }
 
 #ethics .tab-pane {
