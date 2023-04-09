@@ -31,21 +31,23 @@
                       <!-- Tab panes -->
                       <div class="tab-content text-left">
                         <div class="tab-pane active" id="data1" role="tabpanel">
-                          <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
                           <p>
-                            <strong>Example Tweets:</strong>
-                            <div id="container">
-                                <img src="https://media-be.chewy.com/wp-content/uploads/2021/05/11162926/German-Shepherd-1358309706-1024x591.jpg" alt="German Shepherd" width="300" height="300" class="germanshepherd">
-                                <img src="https://d.newsweek.com/en/full/1792784/shiba-inu.jpg?w=1600&h=1600&q=88&f=6bdbd5b7d09308ad718f0f3fce4597ae" alt="Shiba Inu" width="300" height="300" class="shibainu">
-                            </div>
+                              The data used to train these models comes directly from Twitter’s API for exporting tweets and user data. Politician data contains approximately 500K tweets from 485 politicians which are US congress members. Tweets were published between the 2022-2023 period. Moreover, additional data on politicians’ metadata, including their Twitter handle, party affiliation, political office, and state/district was pulled from secondary sources, including <strong><a href="https://pressgallery.house.gov/member-data/members-official-twitter-handles" target="_blank" rel="noopener noreferrer">Press Gallery House</a></strong> and <strong><a href="https://ucsd.libguides.com/congress_twitter/home" target="_blank" rel="noopener noreferrer">UC San Diego</a></strong>.
+                              Below is an example of a tweet that was obtained from the data source:
+                              <br><br><img src="img/sample-tweet-small.png" alt="Tweet Example" width="500" height="154">
+                          </p>
+                          <p>
+                              Text from tweets was cleaned up in order to run inside of the pre-trained models. Non-standard symbols were trimmed, and contents such as links and common stopwords were removed from the corpus. Lastly, different variations of the same word were lemmatized so that they were evaluated the same way in the models.
+                              Ultimately, the prepped data of the tweet example above would look like:
+                              <br><br><strong>[“interesting”, “time”, “biden”, “announce”, “ending”,  “covid”, “emergency”]</strong>
+                          </p>
+                          <p>
+                              Some initial observations were drawn upon reviewing the data. The average politician in our dataset produced 630 tweets per year, of which the most popular themes were healthcare, gun violence, energy, inflation, and infrastructure. In terms of who was referenced within the tweets, the most common subjects were the President of the US, the members from the partisan left and right wing, and media outlets like Fox News.
                           </p>
                         </div>
                         <div class="tab-pane" id="models1" role="tabpanel">
                           <p>
-                              We have two parts to our modeling: 1) scoring text with existing research models; 2) aggregating scored text to evaluate each Twitter user.
-                          </p>
-                          <p>
-                              Using existing research on detecting sentiment and truthfulness with large language models, we incorporated them into our pipeline to score Twitter tweet content. We used 6 sentiment models for detecting hate, irony, offensive, fake, joy, and anger. To detect disinformation, we used three models on detecting the truthfulness of tweets. Check out the "Our Models" section to learn more.
+                              We have two parts to our modeling: 1) scoring text with existing research models; 2) aggregating scored text to evaluate each Twitter user. Using existing research on detecting sentiment and truthfulness with large language models, we incorporated them into our pipeline to score Twitter tweet content. We used 6 sentiment models for detecting hate, irony, offensive, fake, joy, and anger. To detect disinformation, we used three models on detecting the truthfulness of tweets. Check out the <strong><a href="#models">"Our Models"</a></strong> section to learn more.
                           </p>
                           <p>
                               To create a composite score for each user, all tweets are scored, scaled using a standard scaler, and added together. For example, starting with 9 different scores for each tweet, we scale them so that 0 is neutral, positive is good behavior, and negative is bad behavior. These 9 different scaled scores are summed together for a composite score of the tweet of the user.
