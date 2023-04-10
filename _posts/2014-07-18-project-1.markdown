@@ -4,7 +4,7 @@ subtitle: An Artificial Neural Network
 layout: default
 modal-id: 1
 date: 2022-02-23
-img: LSTM.png
+img: tweet-processing.png
 thumbnail: LSTM_wide.png
 alt: Long Short-Term Memory Model
 project-date: February 2022
