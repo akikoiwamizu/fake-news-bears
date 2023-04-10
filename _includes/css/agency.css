@@ -22,6 +22,10 @@ body {
     color: #{{ site.data.template.color.primary }};
 }
 
+.text-white {
+    color: #{{ site.data.template.color.accent }};
+}
+
 p {
     font-size: 14px;
     line-height: 1.75;
@@ -845,6 +849,11 @@ ul.social-buttons li a:active {
   padding-left: 10px;
 }
 
+#product .tab-pane > li {
+  padding-left: 20px;
+  font-size: 14px;
+}
+
 #product .tab-pane {
   padding: 10px;
 }
@@ -865,9 +874,11 @@ ul.social-buttons li a:active {
     line-height: 1.5;
 }
 
+/*
 #product .nav-tabs > .nav-item > .nav-link:hover {
   background-color: #ffd137;
 }
+*/
 
 #product .nav-tabs > .nav-item > .nav-link {
   color: #ffffff;
@@ -981,9 +992,11 @@ ul.social-buttons li a:active {
     line-height: 1.5;
 }
 
+/*
 #ethics .nav-tabs > .nav-item > .nav-link:hover {
   background-color: #ffd137;
 }
+*/
 
 #ethics .nav-tabs > .nav-item > .nav-link {
   color: #ffffff;
