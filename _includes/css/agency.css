@@ -674,18 +674,23 @@ footer {
 }
 
 footer span.copyright {
-    text-transform: uppercase;
     text-transform: none;
     font-family: {{ site.data.template.font.primary }};
     line-height: 40px;
 }
 
-footer ul.quicklinks {
+footer ul.quicklinks li a {
     margin-bottom: 0;
-    text-transform: uppercase;
     text-transform: none;
+    color: #222;
     font-family: {{ site.data.template.font.primary }};
     line-height: 40px;
+}
+
+footer ul.quicklinks li a:hover,
+footer ul.quicklinks li a:focus,
+footer ul.quicklinks li a:active {
+    color: #{{ site.data.template.color.primary }};
 }
 
 ul.social-buttons {
