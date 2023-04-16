@@ -675,18 +675,20 @@ section h3.section-subheading {
 footer {
     padding: 25px 0;
     text-align: center;
+    background-color: #222;
 }
 
 footer span.copyright {
     text-transform: none;
     font-family: {{ site.data.template.font.primary }};
+    color: #fff;
     line-height: 40px;
 }
 
 footer ul.quicklinks li a {
     margin-bottom: 0;
     text-transform: none;
-    color: #222;
+    color: #fff;
     font-family: {{ site.data.template.font.primary }};
     line-height: 40px;
 }
@@ -695,6 +697,21 @@ footer ul.quicklinks li a:hover,
 footer ul.quicklinks li a:focus,
 footer ul.quicklinks li a:active {
     color: #{{ site.data.template.color.primary }};
+}
+
+footer ul.social-buttons li a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    font-size: 20px;
+    line-height: 40px;
+    outline: 0;
+    color: #fff;
+    background-color: #222;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    transition: all .3s;
 }
 
 ul.social-buttons {
@@ -908,12 +925,12 @@ ul.social-buttons li a:active {
   padding: 0;
 }
 
-#product .card[data-background-color="yellow"] {
-  background-color: #f8b311;
+#product .card[data-background-color="dark"] {
+  background-color: #222;
 }
 
-#product [data-background-color="yellow"] {
-  background-color: #f8b311;
+#product [data-background-color="dark"] {
+  background-color: #222;
 }
 
 /* CSS make nav tab bar responsive in mobile */
@@ -1031,12 +1048,12 @@ ul.social-buttons li a:active {
   padding: 0;
 }
 
-#ethics .card[data-background-color="yellow"] {
-  background-color: #f8b311;
+#ethics .card[data-background-color="dark"] {
+  background-color: #222;
 }
 
-#ethics [data-background-color="yellow"] {
-  background-color: #f8b311;
+#ethics [data-background-color="dark"] {
+  background-color: #222;
 }
 
 /* CSS make nav tab bar responsive in mobile */
