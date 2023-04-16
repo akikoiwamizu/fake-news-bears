@@ -26,7 +26,7 @@
                           <a class="nav-link" data-toggle="tab" href="#infra1" role="tab">Infrastructure</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" data-toggle="tab" href="#results1" role="tab">Product</a>
+                          <a class="nav-link" data-toggle="tab" href="#results1" role="tab">Results</a>
                         </li>
                       </ul>
                     </div>
@@ -39,7 +39,7 @@
                               <br><br><img src="img/product/sample-tweet.png" alt="Tweet Example" width="500" height="154">
                           </p>
                           <p>
-                              Text from tweets was cleaned up in order to run inside of the pre-trained models. Non-standard symbols were trimmed and contents such as links and common stopwords were removed from the corpus. Lastly, different variations of the same word were lemmatized so that they were evaluated the same way in the models.
+                              Text from tweets was cleaned up in order to run inside of the pre-trained models. Non-standard symbols were trimmed and content such as links and common stopwords were removed from the corpus. Lastly, different variations of the same word were lemmatized so that they were evaluated the same way in the models.
                               Ultimately, the cleansed version of the tweet example above would look like: <strong>[“interesting”, “time”, “biden”, “announce”, “ending”,  “covid”, “emergency”]</strong>
                               <br><br><img src="img/product/tweet-processing.png" alt="Tweet Example" width="500" height="220">
                           </p>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="tab-pane" id="models1" role="tabpanel">
                           <p>
-                              We have two parts to our modeling: 1) scoring text with existing research models; 2) aggregating scored text to evaluate each Twitter user. We incorporated existing research on detecting truthfulness and sentiment with large language models into our pipeline to score tweet contents.
+                              We have two parts to our modeling: 1) scoring text with existing research models; 2) aggregating scored text to evaluate each Twitter user. We incorporated existing research on detecting truthfulness and sentiment with large language models into our pipeline to score tweet content.
                               We used a total of eight pre-built models including three models for detecting the truthfulness of tweets and five sentiment models for detecting the emotions evoked by tweets:
                               <ol type="1">
                                   <li>Long Short-Term Memory (LSTM): Truth</li>
