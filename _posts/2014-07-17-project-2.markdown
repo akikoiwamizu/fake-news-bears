@@ -4,7 +4,6 @@ subtitle: An Artificial Neural Network
 layout: default
 modal-id: 2
 date: 2022-02-23
-img: Dense.png
 thumbnail: Dense_wide.png
 alt: Dense Layer Model
 project-date: February 2022

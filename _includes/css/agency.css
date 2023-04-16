@@ -866,7 +866,7 @@ ul.social-buttons li a:active {
   padding-left: 10px;
 }
 
-#product .tab-pane > li {
+#product .tab-pane > ol > li {
   padding-left: 20px;
   font-size: 14px;
 }

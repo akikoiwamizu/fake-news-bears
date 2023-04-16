@@ -35,14 +35,13 @@
                       <div class="tab-content text-left">
                         <div class="tab-pane active" id="data1" role="tabpanel">
                           <p>
-                              Our product's dataset contains approximately 500,000 tweets published between 2022-2023 from 485 US Congress members. To collect the latest 100 tweets per politician, we created pipelines to extract this data using the Twitter API, and for historical tweet data, we used our partner <strong><a href="https://www.torch1.com/" target="_blank" rel="noopener noreferrer">Torch’s platform</a></strong> to extract tweets in CSV files. The politicians’ metadata including their Twitter handle, party affiliation, political office, and state/district was pulled from secondary sources including <strong><a href="https://pressgallery.house.gov/member-data/members-official-twitter-handles" target="_blank" rel="noopener noreferrer">Press Gallery House</a></strong> and <strong><a href="https://ucsd.libguides.com/congress_twitter/home" target="_blank" rel="noopener noreferrer">UC San Diego</a></strong>.
-                              Below is an example of a tweet that was obtained from the data sources:
-                              <br><br><img src="img/sample-tweet-small.png" alt="Tweet Example" width="500" height="154">
+                              Our product's dataset contains approximately 500,000 tweets published between 2022-2023 from 485 US Congress members. To collect the latest 100 tweets per politician, we created pipelines to extract this data using the Twitter API, and for historical tweet data, we used our partner <strong><a href="https://www.torch1.com/" target="_blank" rel="noopener noreferrer">Torch’s platform</a></strong> to extract tweets in CSV files. The politicians’ metadata including their Twitter handle, party affiliation, political office, and state/district was pulled from secondary sources including <strong><a href="https://pressgallery.house.gov/member-data/members-official-twitter-handles" target="_blank" rel="noopener noreferrer">Press Gallery House</a></strong> and <strong><a href="https://ucsd.libguides.com/congress_twitter/home" target="_blank" rel="noopener noreferrer">UC San Diego</a></strong>. Below is an example of a tweet that was obtained from the data sources:
+                              <br><br><img src="img/product/sample-tweet.png" alt="Tweet Example" width="500" height="154">
                           </p>
                           <p>
                               Text from tweets was cleaned up in order to run inside of the pre-trained models. Non-standard symbols were trimmed and contents such as links and common stopwords were removed from the corpus. Lastly, different variations of the same word were lemmatized so that they were evaluated the same way in the models.
-                              Ultimately, the prepped data of the tweet example above would look like:
-                              <br><br><strong>[“interesting”, “time”, “biden”, “announce”, “ending”,  “covid”, “emergency”]</strong>
+                              Ultimately, the cleansed version of the tweet example above would look like: <strong>[“interesting”, “time”, “biden”, “announce”, “ending”,  “covid”, “emergency”]</strong>
+                              <br><br><img src="img/product/tweet-processing.png" alt="Tweet Example" width="500" height="220">
                           </p>
                           <p>
                               Some initial observations were drawn upon reviewing the data. The average politician in our dataset produced 630 tweets per year, of which the most popular themes were healthcare, gun violence, energy, inflation, and infrastructure. In terms of who was referenced within the tweets, the most common subjects were the President of the US, the members from the partisan left and right wing, and media outlets like Fox News.
@@ -50,7 +49,18 @@
                         </div>
                         <div class="tab-pane" id="models1" role="tabpanel">
                           <p>
-                              We have two parts to our modeling: 1) scoring text with existing research models; 2) aggregating scored text to evaluate each Twitter user. Using existing research on detecting truthfulness and sentiment with large language models, we incorporated them into our pipeline to score Twitter tweet content. We used a total of 8 pre-built models including: 3 models for detecting the truthfulness of tweets and 5 sentiment models for detecting hate, irony, offensive, joy, and anger. Check out the <strong><a href="#models">"Our Models"</a></strong> section to learn more about each individual model.
+                              We have two parts to our modeling: 1) scoring text with existing research models; 2) aggregating scored text to evaluate each Twitter user. We incorporated existing research on detecting truthfulness and sentiment with large language models into our pipeline to score tweet contents.
+                              We used a total of eight pre-built models including three models for detecting the truthfulness of tweets and five sentiment models for detecting the emotions evoked by tweets:
+                              <ol type="1">
+                                  <li>Long Short-Term Memory (LSTM): Truth</li>
+                                  <li>Dense Layer: Truth</li>
+                                  <li>Cardiff Model: Irony</li>
+                                  <li>Cardiff Model: Hate</li>
+                                  <li>Cardiff Model: Offensive</li>
+                                  <li>Cardiff Model: Real</li>
+                                  <li>Cardiff Model: Joy</li>
+                                  <li>Cardiff Model: Anger</li>
+                              </ol>
                           </p>
                           <p>
                               Each model was trained on various datasets. For example, the 5 sentiment models were trained using the following datasets:
@@ -60,8 +70,9 @@
                               <li>This <strong>emotion recognition task</strong> consists of recognizing the emotion evoked by a tweet. We specifically looked at joy and anger for the purposes of our project and used the dataset for the most participated task of SemEval2018, “Affects in Tweets” (Mohammad et al., 2018).</li>
                           </p>
                           <p>
-                              To create a composite score for each user, all tweets are scored, scaled using a standard scaler, and added together. For example, starting with 9 different scores for each tweet, we scale them so that 0 is neutral, positive is good behavior, and negative is bad behavior. These 9 different scaled scores are summed together for a composite score of the tweet of the user.
-                              Then, we calculate the average composite tweet score for each user for all their tweets to arrive at an aggregate score for each user. The final aggregate score for each user represents how susceptible a user is to spreading disinformation.
+                              To create a composite score for each user, all tweets are scored, scaled using a standard scaler, and added together. For example, starting with 8 different scores for each tweet, we scale them so that 0 is neutral, positive is good behavior, and negative is bad behavior. These 8 scaled model scores are summed together for a composite score for each tweet of a particular user.
+                              Then, we calculate the average composite tweet score for each user to arrive at an aggregated score. This final aggregated score represents how susceptible that individual Twitter user is to spreading disinformation.
+                              <br><br>Check out the <strong><a href="#models">"Our Models"</a></strong> section to learn more about each individual model.
                           </p>
                         </div>
                         <div class="tab-pane" id="performance1" role="tabpanel">
@@ -84,7 +95,7 @@
                                 <li><strong>Twitter API:</strong> The data pipeline retrieves tweets from the Twitter API. The pipeline can use different APIs provided by Twitter, such as the Twitter Streaming API or the Twitter Search API.  For this project the Twitter API used was the user lookup and tweet lookups search functionality.</li>
                                 <li><strong>BigQuery:</strong> The data pipeline uses BigQuery as a cloud-based data warehouse to store and analyze large volumes of data. It integrates well with other Google Cloud Platform services, and in this case, it serves as a data storage and processing layer.</li>
                                 <li><strong>Tweet Analyzers:</strong> This is a machine learning-based tool used in the data pipeline to analyze the intent of the tweets pulled from Twitter.</li>
-                                <li><strong>User Segmentation:</strong> The final output of the data pipeline is user segmentation based on the sentiment scores calculated for each tweet. The data pipeline groups users into different segments based on their overall sentiment, such as positive, negative, or neutral.</li>
+                                <li><strong>User Segmentation:</strong> The final output of the data pipeline is user segmentation based on the model scores calculated for each tweet. The data pipeline groups users into different segments based on their overall sentiment, such as positive, negative, or neutral.</li>
                             </p>
                             <a data-toggle="tab" aria-expanded="false" style="display: flex; justify-content: center;"><img src="img/product/mvp-diagram.png" alt="MVP Diagram" class="img-responsive"></a>
                             <p>

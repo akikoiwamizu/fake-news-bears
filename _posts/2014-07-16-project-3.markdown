@@ -4,7 +4,6 @@ subtitle: Tweet Sentiment Classification
 layout: default
 modal-id: 3
 date: 2020-10-26
-img: Cardiff.png
 thumbnail: Cardiff_wide.png
 alt: Cardiff Models
 project-date: October 2020
