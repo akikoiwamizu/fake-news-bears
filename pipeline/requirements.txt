@@ -361,7 +361,7 @@ torchvision==0.14.0
 tornado @ file:///opt/concourse/worker/volumes/live/2c1a63a2-006b-48ee-56b9-0cfe8b4927f9/volume/tornado_1606942321278/work
 tqdm @ file:///tmp/build/80754af9/tqdm_1635330843403/work
 traitlets @ file:///tmp/build/80754af9/traitlets_1632522747050/work
-transformers==4.25.1
+transformers==4.30.0
 tweepy==4.12.1
 tweet-parser==1.13.2
 twint==2.1.20
